@@ -1,0 +1,80 @@
+{
+	"Language": {
+		"en-us":"English",
+		"zh-tw":"繁體中文",
+		"": ""
+	},
+	"Manage": {
+		"ManageLogin": "登入",
+		"Account": "帳號",
+		"Password": "密碼",
+		"Remember": "記住我",
+		"Login": "登入",
+		"Logout": "登出",
+		"Menu": {
+			"DashBoard": "總覽",
+			"Theme": "版面設定",
+			"ThemeCarousel": "輪播設定",
+			"ThemeCustomMenu": "選單設定",
+			"Order": "訂單管理",
+			"Product": "商品管理",
+			"ProductList": "商品列表",
+			"ProductAdd": "新增商品",
+			"ProductCategory": "商品分類",
+			"ProductAddCategory": "新增商品分類",
+			"Post": "文章管理",
+			"PostList": "文章列表",
+			"PostAdd": "新增文章",
+			"PostEdit": "編輯文章",
+			"PostCategory": "文章分類",
+			"PostAddCategory": "新增文章分類",
+			"PostEditCategory": "編輯文章分類",
+			"Member": "顧客管理",
+			"MemberList": "會員列表",
+			"MemberAdd": "新增會員",
+			"AdminList": "管理員清單",
+			"AdminAdd": "新增管理員",
+			"MemberGroup": "會員群組",
+			"AdminGroup": "管理員群組",
+			"AdminPermission": "管理員權限",
+			"MessageCenter": "訊息中心",
+			"Customer": "顧客訊息",
+			"System": "系統訊息",
+			"": ""
+		},
+		"Post": {
+			"PostList/Title": "文章標題",
+			"PostList/Slug": "代稱",
+			"PostList/PostTime": "發文日期",
+			"PostList/Tags": "標籤",
+			"PostList/Action": "動作"
+		},
+		"Alert": "通知",
+		"MediaStore": "媒體櫃",
+		"SystemConfig": "系統設定",
+		"LangSwitcher": "語系選擇",
+		"GoToWebsite": "訪問前台網站",
+		"AboutSystem": "關於系統",
+		"Profile": "個人資料",
+		"ResetPassword": "修改密碼",
+		"": ""
+	},
+	"Message": {
+		"Success": "成功",
+		"Warning": "警告",
+		"Error": "錯誤",
+		"Info": "提示",
+		"Manage": {
+			"auth/invalid-email": "帳號不符規定",
+			"auth/user-disabled": "此帳號已停用！",
+			"auth/user-not-found": "找不到該使用者！",
+			"auth/wrong-password": "密碼錯誤，請重新輸入！",
+			"auth/expired": "憑證已逾時，請重新登入。",
+			"auth/unexpected-error": "發生短暫錯誤，請稍後再試。",
+			"logout/success-logout": "您已成功登出。",
+			"firestore/notfound": "找不到資料！。",
+			"post/nodata": "目前無任何文章。",
+			"": ""
+		}
+	}
+}

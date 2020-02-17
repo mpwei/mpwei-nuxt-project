@@ -1,0 +1,80 @@
+{
+	"Language": {
+		"en-us":"English",
+		"zh-tw":"繁體中文",
+		"": ""
+	},
+	"Manage": {
+		"ManageLogin": "Login",
+		"Account": "Account",
+		"Password": "Password",
+		"Remember": "Remember me",
+		"Login": "Login",
+		"Logout": "Logout",
+		"Menu": {
+			"DashBoard": "DashBoard",
+			"Theme": "Theme",
+			"ThemeCarousel": "Carousel",
+			"ThemeCustomMenu": "Custom Menu",
+			"Order": "Order",
+			"Product": "Product",
+			"ProductList": "Product List",
+			"ProductAdd": "Add",
+			"ProductCategory": "Categories",
+			"ProductAddCategory": "Add Category",
+			"Post": "Post",
+			"PostList": "Post List",
+			"PostAdd": "Add",
+			"PostEdit": "Edit",
+			"PostCategory": "Categories",
+			"PostAddCategory": "Add Category",
+			"PostEditCategory": "Edit Category",
+			"Member": "Member",
+			"MemberList": "Member List",
+			"MemberAdd": "Add",
+			"AdminList": "Admin List",
+			"AdminAdd": "Add Admin",
+			"MemberGroup": "Member Group",
+			"AdminGroup": "Admin Group",
+			"AdminPermission": "Admin Permission",
+			"MessageCenter": "Message Center",
+			"Customer": "Customer",
+			"System": "System",
+			"": ""
+		},
+		"Post": {
+			"PostList/Title": "Title",
+			"PostList/Slug": "Slug",
+			"PostList/PostTime": "Post Time",
+			"PostList/Tags": "Tags",
+			"PostList/Action": "Action"
+		},
+		"Alert": "Alert",
+		"MediaStore": "Media",
+		"SystemConfig": "Config",
+		"LangSwitcher": "Language Switcher",
+		"GoToWebsite": "Website",
+		"AboutSystem": "About System",
+		"Profile": "Profile",
+		"ResetPassword": "Reset Password",
+		"": ""
+	},
+	"Message": {
+		"Success": "Success",
+		"Warning": "Warning",
+		"Error": "Error",
+		"Info": "Info",
+		"Manage": {
+			"auth/invalid-email": "Account is invalid",
+			"auth/user-disabled": "Account is disabled.",
+			"auth/user-not-found": "Not found this account.",
+			"auth/wrong-password": "Wrong password, please enter password again.",
+			"auth/expired": "Certificate is expired, please login again.",
+			"auth/unexpected-error": "Unexpected error, please try again later.",
+			"logout/success-logout": "You are success to logout!",
+			"firestore/notfound": "Data is not found.",
+			"post/nodata": "No data in this result",
+			"": ""
+		}
+	}
+}
