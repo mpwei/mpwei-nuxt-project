@@ -1,0 +1,35 @@
+#header {
+    position: relative;
+    z-index: 999;
+}
+
+#header .site-logo > img {
+    max-height: 40px;
+}
+
+#header .site-logo > h1 {
+    font-size: 30px;
+    font-weight: 700;
+    font-family: "Roboto", Cabin, -apple-system, Microsoft JhengHei, "Segoe UI", sans-serif;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+#footer {
+    font-size: 0.8rem;
+    letter-spacing: 0.05rem;
+}
+
+#IndexCarousel .card-footer > span:not(:last-child)::after,
+.ArticleList .card-footer > span:not(:last-child)::after {
+    content: "｜";
+    margin: 0 0.33rem;
+}
+
+.ArticleList .card {
+    cursor: pointer;
+}
+
+.ArticleList .card-footer > span {
+    font-size: small;
+}

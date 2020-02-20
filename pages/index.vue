@@ -1,77 +1,146 @@
 <template>
   <div class="container">
-    <div>
-      <logo />
-      <img src="https://firebasestorage.googleapis.com/v0/b/mpwei-2889f.appspot.com/o/images%2Flogo_icon.png?alt=media&token=f0882d45-264c-41a0-acdf-753c4300bb8f" alt="">
-      <img v-lazy="'https://firebasestorage.googleapis.com/v0/b/mpwei-2889f.appspot.com/o/images%2Flogo_icon.png?alt=media&token=f0882d45-264c-41a0-acdf-753c4300bb8f'" alt="">
-      <h1 class="title">
-        {{ name }}
-      </h1>
-      <h2 class="subtitle">
-        My wonderful Nuxt.js project
-      </h2>
-      <div class="links">
-        {{ text }}
-      </div>
-    </div>
+    <section v-if="Carousels.length > 0" class="d-none d-md-block my-4">
+      <b-carousel
+        id="IndexCarousel"
+        v-model="CarouselSlide"
+        :interval="6000"
+        @sliding-start="onSlideStart"
+        @sliding-end="onSlideEnd"
+      >
+        <b-carousel-slide v-for="(value, key) in Carousels" :key="key">
+          <div slot="img" class="row no-gutters">
+            <div class="col-lg-8">
+              <img :src="value.Url" :alt="value.Alt" :title="value.Title" :to="value.Link" class="img-fluid">
+            </div>
+            <div class="col-lg-4">
+              <b-card no-body class="h-100 rounded-0">
+                <b-card-body body-tag="article">
+                  <b-card-title title-tag="h3" class="h2 font-weight-bold">
+                    {{ value.Title }}
+                  </b-card-title>
+                  <b-card-text>
+                    {{ value.Content }}
+                  </b-card-text>
+                </b-card-body>
+                <b-card-footer class="bg-white border-0 text-secondary small">
+                  <span>Vue.js</span>
+                  <span>Firebase</span>
+                  <span>2020-01-20</span>
+                </b-card-footer>
+              </b-card>
+            </div>
+          </div>
+        </b-carousel-slide>
+      </b-carousel>
+    </section>
+    <section class="my-4">
+      <b-card-group class="ArticleList" deck>
+        <b-card v-for="(value,index) in Posts" :key="index" no-body class="rounded-0" @click="$router.push({ name: 'posts', params: { slug: value.Slug }})">
+          <b-card-img-lazy class="rounded-0" v-bind="mainProps" :src="value.Cover" :alt="value.Title" />
+          <b-card-body body-tag="article">
+            <b-card-title title-tag="h3" class="h4 font-weight-bold">
+              {{ value.Title }}
+            </b-card-title>
+            <b-card-text>
+              {{ value.Excerpt }}
+            </b-card-text>
+          </b-card-body>
+          <b-card-footer class="bg-white border-0 text-muted small">
+            <span v-for="(tag, subindex) in value.Tags" :key="subindex">{{ tag }}</span>
+            <span>{{ $moment.unix(value.PostTime).format("Y-MM-DD HH:m:s") }}</span>
+          </b-card-footer>
+        </b-card>
+        <b-card v-for="number in ComingSoon()" :key="number" no-body class="rounded-0">
+          <b-card-body body-tag="article" class="align-items-center d-flex justify-content-center">
+            <b-card-title title-tag="h3" class="h4 font-weight-bold">
+              Coming Soon
+            </b-card-title>
+          </b-card-body>
+        </b-card>
+      </b-card-group>
+    </section>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import { Firestore } from '@/plugins/firebase'
 
 export default {
-  components: {
-    Logo
-  },
+  layout: 'UserLayout',
   fetch () {
     // The fetch method is used to fill the store before rendering the page
   },
-  asyncData (context) {
-    // called every time before loading the component
+  async asyncData () {
+    const Carousels = []
+    const Posts = []
+    await Firestore.collection('Carousel').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        Carousels.push(doc.data())
+      })
+    })
+    await Firestore.collection('Posts').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        Posts.push(doc.data())
+      })
+    })
     return {
-      name: 'COSMOS'
+      Carousels,
+      Posts
     }
   },
   data () {
     return {
-      name: '123',
-      text: ''
+      Carousels: [],
+      CarouselSlide: 0,
+      CarouselSliding: null,
+      mainProps: {
+        center: true,
+        fluidGrow: true,
+        blank: true,
+        blankColor: '#999',
+        block: true,
+        blankWidth: 600,
+        blankHeight: 400
+      }
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      this.Init().then(() => {
-        this.$nuxt.$loading.finish()
-        this.$Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: 'Good'
-        })
-      }).catch(() => {
-        this.$nuxt.$loading.finish()
-        this.$Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Bad'
-        })
-      })
-    })
+    this.Init()
   },
   methods: {
     Init () {
       return Promise.all([
-        this.readFromFirestore()
+        this.GetCarousel(),
+        this.GetPosts()
       ])
     },
-    readFromFirestore () {
-      return this.$Firebase('firestore').collection('Config').doc('Website').get().then((r) => {
-        this.text = r.data()
-        console.log(this.text)
-      }).catch((e) => {
-        console.error(e)
+    GetCarousel () {
+      return this.Carousels.forEach((data, index) => {
+        this.$Firebase('storage').ref().child(data.Url).getDownloadURL().then((_URL) => {
+          this.Carousels[index].Url = _URL
+        }).catch((e) => {
+          console.error(e)
+        })
       })
+    },
+    GetPosts () {
+      return this.Posts.forEach((data, index) => {
+        this.$Firebase('storage').ref().child(data.Cover).getDownloadURL().then((_URL) => {
+          this.Posts[index].Cover = _URL
+        }).catch((e) => {
+          console.error(e)
+        })
+      })
+    },
+    onSlideStart () {
+      this.CarouselSliding = true
+    },
+    onSlideEnd () {
+      this.CarouselSliding = false
+    },
+    ComingSoon (_Column = 3) {
+      return parseInt(_Column - this.Posts.length)
     }
   },
   head () {
@@ -79,36 +148,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

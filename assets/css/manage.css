@@ -1,0 +1,173 @@
+#AdminLogin > section {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+#AdminLogin .form-signin {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    margin: auto;
+}
+
+#AdminLogin .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+#AdminLogin .form-label-group > input,
+#AdminLogin .form-label-group > label {
+    height: 3.125rem;
+    padding: .75rem;
+}
+
+#AdminLogin .form-label-group > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0; /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    pointer-events: none;
+    cursor: text; /* Match the input under the label */
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+}
+
+#AdminLogin .form-label-group input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+#AdminLogin .form-label-group input:-ms-input-placeholder {
+    color: transparent;
+}
+
+#AdminLogin .form-label-group input::-ms-input-placeholder {
+    color: transparent;
+}
+
+#AdminLogin .form-label-group input::-moz-placeholder {
+    color: transparent;
+}
+
+#AdminLogin .form-label-group input::placeholder {
+    color: transparent;
+}
+
+#AdminLogin .form-label-group input:not(:placeholder-shown) {
+    padding-top: 1.25rem;
+    padding-bottom: .25rem;
+}
+
+#AdminLogin .form-label-group input:not(:placeholder-shown) ~ label {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Fallback for Edge
+-------------------------------------------------- */
+@supports (-ms-ime-align: auto) {
+    #AdminLogin .form-label-group > label {
+        display: none;
+    }
+
+    #AdminLogin .form-label-group input::-ms-input-placeholder {
+        color: #777;
+    }
+}
+
+/* Fallback for IE
+-------------------------------------------------- */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    #AdminLogin .form-label-group > label {
+        display: none;
+    }
+
+    #AdminLogin .form-label-group input:-ms-input-placeholder {
+        color: #777;
+    }
+}
+
+.form-control {
+    -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #bbb;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0.5rem 0.2rem rgba(39, 39, 40, 0.25);
+    box-shadow: 0 0 0.5rem 0.2rem rgba(39, 39, 40, 0.25);
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+#AdminHeader {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+#MainNav .site-logo {
+    padding: 0;
+    font-size: 1rem;
+}
+
+#MainNav .site-logo img {
+    max-height: 30px;
+}
+
+#MainNav .dropdown-menu {
+    font-size: 0.875rem;
+    border-radius: 0;
+    -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+@media (min-width: 1200px) {
+    #MainNav .MainLeft .nav-item > a {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+}
+
+.nav-submenu {
+    background-color: #fff;
+}
+
+.nav-submenu a {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: .875rem;
+    color: #6c757d;
+}
+
+.nav-submenu a.active {
+    font-weight: 500;
+    color: #343a40;
+}
+
+.nav-submenu a:hover {
+    color: #121212;
+}
+
+.AdminContent {
+    margin-top: 8rem;
+    height: 100%;
+}

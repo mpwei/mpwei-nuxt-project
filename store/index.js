@@ -1,6 +1,8 @@
+import { Firestore } from '@/plugins/firebase'
+
 export const state = () => ({
-  locales: ['en-us', 'zh-tw'],
-  locale: 'zh-tw',
+  locales: ['zh-tw', 'en-us'],
+  language: 'zh-tw',
   loading: false,
   profile: {
     logo: '',
@@ -20,85 +22,43 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_LANG (state, locale) {
+  SetLang (state, locale) {
     if (state.locales.includes(locale)) {
-      state.locale = locale
+      state.language = locale
     }
+  },
+  SetWebConfig (_State, Config) {
+    _State.profile.website = Config
+  },
+  SetMenu (_State, Menu) {
+    _State.profile.menu = Menu
+  },
+  SetLogo (_State, URL) {
+    _State.profile.logo = URL
   }
 }
 
-export const action = {
-  GetWebsiteConfig (_Context) {
-    return Promise.resolve((_Resolve, _Reject) => {
-      _Context.state.database.collection('Config').doc('Website').get().then((_Response) => {
-        _Context.state.profile.website = {
-          Designer: _Response.data().Designer,
-          Subtitle: _Response.data().Subtitle,
-          Title: _Response.data().Title,
-          Year: _Response.data().Year
-        }
-        _Resolve()
-      }).catch((_Error) => {
-        _Reject(_Error)
+export const actions = {
+  async nuxtServerInit ({ dispatch }, context) {
+    await dispatch('GetWebConfig', context)
+    await dispatch('GetMenu', context)
+  },
+  async GetMenu ({ commit }) {
+    const Menu = []
+    await Firestore.collection('Menu').where('Open', '==', true).orderBy('No', 'asc').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        Menu.push(doc.data())
       })
+      commit('SetMenu', Menu)
+    }).catch((e) => {
+      console.log(e)
     })
   },
-  GetLogo (_Context) {
-    return Promise.resolve((_Resolve, _Reject) => {
-      _Context.state.profile.logo = 'images/logo_icon.png'
-      _Context.state.storage.ref().child(_Context.state.profile.logo).getDownloadURL().then((URL) => {
-        _Context.state.profile.logo = URL
-        _Resolve()
-      }).catch((_Error) => {
-        _Reject(_Error)
-      })
-    })
-  },
-  GetStorageImages (_Context, _Path) {
-    return Promise.resolve((_Resolve, _Reject) => {
-      _Context.state.storage.ref().child(_Path).getDownloadURL().then((URL) => {
-        _Resolve(URL)
-      }).catch((_Error) => {
-        _Reject(_Error)
-      })
-    })
-  },
-  GetMenu (_Context) {
-    return Promise.resolve((_Resolve, _Reject) => {
-      _Context.state.profile.menu = []
-      _Context.state.database.collection('Menu').where('Open', '==', true).orderBy('No', 'asc').get().then((_Response) => {
-        _Response.forEach((doc) => {
-          _Context.state.profile.menu.push(doc.data())
-        })
-        _Resolve()
-      }).catch((_Error) => {
-        _Reject(_Error)
-      })
-    })
-  },
-  CheckAuth (_Context) {
-    return Promise.resolve((_Resolve, _Reject) => {
-      _Context.state.auth.onAuthStateChanged((_Auth) => {
-        if (_Auth) {
-          _Context.state.manage.login = true
-          _Context.state.manage.uid = _Auth.uid
-          _Context.state.manage.data = {
-            displayName: _Auth.displayName,
-            photoURL: _Auth.photoURL,
-            email: _Auth.email,
-            emailVerified: _Auth.emailVerified,
-            phoneNumber: _Auth.phoneNumber,
-            isAnonymous: _Auth.isAnonymous,
-            metadata: _Auth.metadata
-          }
-          _Resolve(_Context.state.manage.login)
-        } else {
-          _Context.state.manage.login = false
-          _Context.state.manage.uid = ''
-          _Context.state.manage.data = []
-          _Reject(_Context.state.manage.login)
-        }
-      })
+  async GetWebConfig ({ commit }) {
+    await Firestore.collection('Config').doc('Website').get().then((doc) => {
+      commit('SetWebConfig', doc.data())
+    }).catch((e) => {
+      console.log(e)
     })
   }
 }
