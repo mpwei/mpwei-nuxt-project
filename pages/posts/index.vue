@@ -16,7 +16,7 @@ import { Firestore } from '@/plugins/firebase'
 
 export default {
   layout: 'UserLayout',
-  fetch () {
+  fetch ({ store, params }) {
     // The fetch method is used to fill the store before rendering the page
   },
   asyncData (context) {

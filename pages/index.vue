@@ -36,7 +36,7 @@
     </section>
     <section class="my-4">
       <b-card-group class="ArticleList" deck>
-        <b-card v-for="(value,index) in Posts" :key="index" no-body class="rounded-0" @click="$router.push({ name: 'posts', params: { slug: value.Slug }})">
+        <b-card v-for="(value,index) in Posts" :key="index" no-body class="rounded-0" @click="$router.push( { name: 'posts-slug', params: { slug: value.Slug }} )">
           <b-card-img-lazy class="rounded-0" v-bind="mainProps" :src="value.Cover" :alt="value.Title" />
           <b-card-body body-tag="article">
             <b-card-title title-tag="h3" class="h4 font-weight-bold">
@@ -68,7 +68,7 @@ import { Firestore } from '@/plugins/firebase'
 
 export default {
   layout: 'UserLayout',
-  fetch () {
+  fetch ({ store, params }) {
     // The fetch method is used to fill the store before rendering the page
   },
   async asyncData () {

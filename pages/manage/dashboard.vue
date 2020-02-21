@@ -14,7 +14,7 @@
 import { Firestore } from '@/plugins/firebase'
 
 export default {
-  layout: 'UserLayout',
+  layout: 'ManageLayout',
   fetch ({ store, params }) {
     // The fetch method is used to fill the store before rendering the page
   },

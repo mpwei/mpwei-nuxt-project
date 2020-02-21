@@ -3,6 +3,8 @@
     {{ $route.name }}
     {{ $route.path }}
     {{ $route.params }}
+
+    {{ PostData }}
   </div>
 </template>
 
@@ -14,27 +16,41 @@ export default {
   validate ({ params }) {
     return /^[a-zA-Z0-9_-]+$/.test(params.slug)
   },
-  fetch () {
+  fetch ({ store, params }) {
     // The fetch method is used to fill the store before rendering the page
   },
-  asyncData (context) {
-    // called every time before loading the component
-    return {
-      name: 'COSMOS'
-    }
+  async asyncData (_Context) {
+	  const PostData = []
+	  let Title = _Context.app.head.title
+	  let Description = ''
+	  await Firestore.collection('PostDetail').doc(_Context.route.params.slug).get().then((doc) => {
+		  PostData.push(doc.data())
+		  Title = doc.data().Title[_Context.store.state.language]
+		  Description = doc.data().Description[_Context.store.state.language]
+	  })
+	  return {
+		  PostData,
+		  Title,
+		  Description
+	  }
   },
   data () {
     return {
-      name: '123',
-      text: ''
+      PostData: [],
+      Title: '',
+      Description: ''
     }
   },
   mounted () {
-    console.log(this.$route)
   },
   methods: {},
   head () {
-    // Set Meta Tags for this Page
+    return {
+      title: this.Title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.Description }
+      ]
+    }
   }
 }
 </script>

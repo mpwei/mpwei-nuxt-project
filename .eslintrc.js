@@ -13,8 +13,13 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-unused-vars': 'off',
+	  'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+	  'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+	  'no-unused-vars': 'off',
+	  'vue/html-indent': 'off',
+	  'vue/html-closing-bracket-newline': 'off',
+	  'indent': 'off',
+	  'no-tabs': 'off',
+	  'no-mixed-spaces-and-tabs': 'off'
   }
 }

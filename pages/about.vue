@@ -1,10 +1,6 @@
 <template>
   <div class="container">
-    <div>
-      <h2 class="subtitle">
-        aaaaa
-      </h2>
-    </div>
+    {{ PostData }}
   </div>
 </template>
 
@@ -13,25 +9,41 @@ import { Firestore } from '@/plugins/firebase'
 
 export default {
   layout: 'UserLayout',
-  fetch () {
-    // The fetch method is used to fill the store before rendering the page
+  fetch ({ store, params }) {
   },
-  asyncData (context) {
-    // called every time before loading the component
+  async asyncData (_Context) {
+    const PostData = []
+    let Title = _Context.app.head.title
+    let Description = ''
+    await Firestore.collection('PostDetail').doc('about').get().then((doc) => {
+      PostData.push(doc.data())
+      Title = doc.data().Title[_Context.store.state.language]
+      Description = doc.data().Description[_Context.store.state.language]
+    })
     return {
-      name: 'COSMOS'
+      PostData,
+      Title,
+      Description
     }
   },
   data () {
     return {
-      name: '123',
-      text: ''
+      PostData: [],
+      Title: '',
+      Description: ''
     }
   },
-  mounted () {},
-  methods: {},
+  mounted () {
+  },
+  methods: {
+  },
   head () {
-    // Set Meta Tags for this Page
+    return {
+      title: this.Title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.Description }
+      ]
+    }
   }
 }
 </script>

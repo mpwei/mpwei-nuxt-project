@@ -12,7 +12,8 @@ export default ({ app, store }) => {
     messages: {
       'en-us': require('~/locales/en-us.json'),
       'zh-tw': require('~/locales/zh-tw.json')
-    }
+    },
+    silentTranslationWarn: true
   })
 
   app.i18n.path = (link) => {

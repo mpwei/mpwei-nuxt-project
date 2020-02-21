@@ -58,38 +58,14 @@
 
 <script>
 import { Firestore } from '@/plugins/firebase'
-import '@/assets/css/global.css'
-import '@/assets/css/user.css'
-import 'font-awesome/css/font-awesome.css'
+import '~/assets/css/user.css'
 
 export default {
-  fetch () {
+  fetch ({ store, params }) {
     // The fetch method is used to fill the store before rendering the page
-  },
-  async asyncData () {
-    const WebConfig = []
-    const Menu = []
-    await Firestore.collection('Menu').where('Open', '==', true).orderBy('No', 'asc').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        WebConfig.push(doc.data())
-        console.log(doc.data())
-      })
-    })
-    await Firestore.collection('Config').doc('Website').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        Menu.push(doc.data())
-        console.log(doc.data())
-      })
-    })
-    return {
-      WebConfig,
-      Menu
-    }
   },
   data () {
     return {
-      WebConfig: [],
-      Menu: [],
       Social: {
         mail: {
           icon: 'envelope',
@@ -115,24 +91,8 @@ export default {
   methods: {
     Init () {
       return Promise.all([
-        // this.GetWebConfig(),
-        // this.GetMenu(),
         this.GetLogo()
       ])
-    },
-    GetWebConfig () {
-      return this.WebConfig.forEach((_Response) => {
-        this.$store.commit('SetWebConfig', _Response)
-      }).catch((e) => {
-        console.error(e)
-      })
-    },
-    GetMenu () {
-      return this.Menu.forEach((_Response) => {
-        this.$store.commit('SetMenu', _Response)
-      }).catch((e) => {
-        console.error(e)
-      })
     },
     GetLogo () {
       return this.$Firebase('storage').ref().child('images/logo_icon.png').getDownloadURL().then((_URL) => {
