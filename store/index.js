@@ -5,12 +5,12 @@ export const state = () => ({
   language: 'zh-tw',
   loading: false,
   profile: {
-    menu: [],
     website: {
       Logo: '',
       LogoAlt: '',
       Designer: [],
       Subtitle: [],
+      Menu: [],
       Title: [],
       Year: 1970
     }
@@ -30,9 +30,6 @@ export const mutations = {
   },
   SetWebConfig (_State, _Config) {
     _State.profile.website = _Config
-  },
-  SetMenu (_State, _Menu) {
-    _State.profile.menu = _Menu
   },
   SetAuthStatus (_State, _Auth) {
     if (_Auth) {
@@ -58,23 +55,19 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit ({ dispatch }, context) {
     await dispatch('GetWebConfig', context)
-    await dispatch('GetMenu', context)
     await dispatch('GetLang', context)
-  },
-  async GetMenu ({ commit }) {
-    const Menu = []
-    await Firestore.collection('Menu').where('Open', '==', true).orderBy('No', 'asc').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        Menu.push(doc.data())
-      })
-      commit('SetMenu', Menu)
-    }).catch((_Error) => {
-      console.log(_Error)
-    })
   },
   async GetWebConfig ({ commit }) {
     await Firestore.collection('Config').doc('Website').get().then((doc) => {
-      commit('SetWebConfig', doc.data())
+      const Data = doc.data()
+      const Menu = []
+      Data.Menu.forEach((_Value, _Index) => {
+        if (_Value.Open === true) {
+          Menu.push(_Value)
+        }
+      })
+      Data.Menu = Menu
+      commit('SetWebConfig', Data)
     }).catch((_Error) => {
       console.log(_Error)
     })

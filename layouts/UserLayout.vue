@@ -17,7 +17,7 @@
           <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
               <b-nav-item
-                v-for="(value,index) in $store.state.profile.menu"
+                v-for="(value,index) in $store.state.profile.website.Menu"
                 :key="index"
                 class="mr-lg-3"
                 :to="value.Url"

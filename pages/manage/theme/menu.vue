@@ -18,7 +18,7 @@
             @end="drag = false"
           >
             <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-              <b-card v-for="(Data, Index) in MenuList" :key="Index" no-body class="mb-2 shadow-sm">
+              <b-card v-for="(Data, Index) in MenuList" :key="Data.No" no-body class="mb-2 shadow-sm">
                 <b-card-header header-tag="header" class="p-0 text-left d-flex justify-content-between align-items-center" role="tab">
                   <div class="d-flex align-items-center">
                     <b-button
@@ -54,7 +54,7 @@
                       :label="$t('Manage.Themes.CustomMenu/LinkOption')"
                       label-for="LinkOption"
                     >
-                      <b-form-select :id="'LinkOption' + Index" v-model="SelectLinkOption" size="sm">
+                      <b-form-select :id="'LinkOption' + Index" v-model="Data.SelectLinkOption" size="sm">
                         <b-form-select-option value="null">
                           {{ $t('Manage.Themes.CustomMenu/LinkOptionPlaceholder') }}
                         </b-form-select-option>
@@ -72,7 +72,7 @@
                         v-model="Data.Url"
                         type="text"
                         required
-                        :disabled="SelectLinkOption!=='Custom'"
+                        :disabled="Data.SelectLinkOption!=='Custom'"
                         size="sm"
                       />
                     </b-form-group>
@@ -107,7 +107,6 @@
     data () {
       return {
       	MenuList: [],
-        SelectLinkOption: null,
         LinkOption: ['Post', 'Custom'],
         Loading: true,
         drag: false
