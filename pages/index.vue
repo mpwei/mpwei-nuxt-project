@@ -37,18 +37,18 @@
     <section class="my-4">
       <b-card-group class="ArticleList" deck>
         <b-card v-for="(value,index) in Posts" :key="index" no-body class="rounded-0" @click="$router.push( { name: 'posts-slug', params: { slug: value.Slug }} )">
-          <b-card-img-lazy class="rounded-0" v-bind="mainProps" :src="value.Cover" :alt="value.Title" />
+          <b-card-img-lazy class="rounded-0" v-bind="mainProps" :src="value.Cover" :alt="value.Title[$store.state.language]" />
           <b-card-body body-tag="article">
             <b-card-title title-tag="h3" class="h4 font-weight-bold">
-              {{ value.Title }}
+              {{ value.Title[$store.state.language] }}
             </b-card-title>
             <b-card-text>
-              {{ value.Excerpt }}
+              {{ value.Excerpt[[$store.state.language]] }}
             </b-card-text>
           </b-card-body>
           <b-card-footer class="bg-white border-0 text-muted small">
             <span v-for="(tag, subindex) in value.Tags" :key="subindex">{{ tag }}</span>
-            <span>{{ $moment.unix(value.PostTime).format("Y-MM-DD HH:m:s") }}</span>
+            <span>{{ $moment.unix(value.PostTime.seconds).format("Y-MM-DD HH:mm:ss") }}</span>
           </b-card-footer>
         </b-card>
         <b-card v-for="number in ComingSoon()" :key="number" no-body class="rounded-0">
@@ -106,32 +106,19 @@ export default {
     }
   },
   mounted () {
-    this.Init()
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      this.Init().then(() => {
+        this.$nuxt.$loading.finish()
+      }).catch(() => {
+        this.$nuxt.$loading.finish()
+      })
+    })
   },
   methods: {
     Init () {
       return Promise.all([
-        this.GetCarousel(),
-        this.GetPosts()
       ])
-    },
-    GetCarousel () {
-      return this.Carousels.forEach((data, index) => {
-        this.$Firebase('storage').ref().child(data.Url).getDownloadURL().then((_URL) => {
-          this.Carousels[index].Url = _URL
-        }).catch((e) => {
-          console.error(e)
-        })
-      })
-    },
-    GetPosts () {
-      return this.Posts.forEach((data, index) => {
-        this.$Firebase('storage').ref().child(data.Cover).getDownloadURL().then((_URL) => {
-          this.Posts[index].Cover = _URL
-        }).catch((e) => {
-          console.error(e)
-        })
-      })
     },
     onSlideStart () {
       this.CarouselSliding = true

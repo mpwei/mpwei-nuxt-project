@@ -61,3 +61,19 @@ h1, h2, h3, h4, h5,
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }
+
+.fs-form-sm {
+  font-size: 14px;
+}
+
+.fs-form-md {
+  font-size: 18px;
+}
+
+.fs-form-lg {
+  font-size: 24px;
+}
+
+.b-form-tags-button {
+  white-space: nowrap;
+}

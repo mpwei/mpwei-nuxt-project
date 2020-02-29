@@ -97,19 +97,13 @@
     }
 }
 
-.form-control {
-    -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    border: 1px solid #eee;
-}
-
 .form-control:focus {
     color: #495057;
     background-color: #fff;
     border-color: #bbb;
     outline: 0;
-    -webkit-box-shadow: 0 0 0.5rem 0.2rem rgba(39, 39, 40, 0.25);
-    box-shadow: 0 0 0.5rem 0.2rem rgba(39, 39, 40, 0.25);
+    -webkit-box-shadow: 0 0 0.5rem 0.2rem rgba(39, 39, 40, 0.25)!important;
+    box-shadow: 0 0 0.5rem 0.2rem rgba(39, 39, 40, 0.25)!important;
 }
 
 body {
@@ -170,4 +164,32 @@ body {
 .AdminContent {
     margin-top: 8rem;
     height: 100%;
+}
+
+.AdminContent form label {
+  font-weight: bold;
+}
+
+.AdminContent .ContentLoading {
+    z-index: 100;
+    background-color: rgba(255,255,255,0.75);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.AdminContent .ql-editor {
+  min-height: 300px;
+}
+
+.AdminContent .PostLang > img {
+  width: 25px;
+  height: auto;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+
+.AdminContent .PostLang > img.active {
+  opacity: 1;
 }

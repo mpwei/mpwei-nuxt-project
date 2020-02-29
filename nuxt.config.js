@@ -29,18 +29,20 @@ export default {
   ** Global CSS
   */
   css: [
+    'font-awesome/css/font-awesome.css',
     '~/assets/css/global.css',
-    'font-awesome/css/font-awesome.css'
+    '~/assets/css/user.css',
+    '~/assets/css/manage.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/firebase',
-    '~/plugins/SweetAlert2',
-    '~/plugins/lazyload',
-    '~/plugins/language',
-    '~/plugins/moment'
+    { src: '~/plugins/firebase' },
+    { src: '~/plugins/SweetAlert2' },
+    { src: '~/plugins/language' },
+    { src: '~/plugins/moment' },
+    { src: '~/plugins/Editor', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -75,6 +77,20 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  router: {
+    extendRoutes (routes, resolve) {
+      routes.push({
+          name: 'PostEdit',
+          path: '/manage/posts/edit/:slug',
+          component: resolve(__dirname, 'pages/manage/posts/add.vue')
+        },
+        {
+          name: 'PostEditCategory',
+          path: '/manage/posts/category/edit/:slug',
+          component: resolve(__dirname, 'pages/manage/posts/add_category.vue')
+        })
     }
   }
 }

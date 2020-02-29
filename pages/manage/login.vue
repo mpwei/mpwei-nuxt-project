@@ -3,7 +3,7 @@
     <section class="container my-lg-5">
       <form class="form-signin" @submit.prevent="DoLogin">
         <div class="mb-4">
-          <img v-lazy="$store.state.profile.logo" :alt="$store.state.profile.website.Title[$store.state.language]" class="mb-4 mx-auto d-block">
+          <img :src="$store.state.profile.website.Logo" :alt="$store.state.profile.website.Title[$store.state.language]" class="mb-4 mx-auto d-block">
           <h1 class="text-center h3 mb-3 font-weight-bold">
             {{ $t('Manage.ManageLogin') }}
           </h1>
@@ -23,7 +23,7 @@
             id="inputEmail"
             v-model="Account"
             type="email"
-            class="form-control"
+            class="form-control shadow"
             :placeholder="$t('Manage.Account')"
             required
             autofocus>
@@ -35,7 +35,7 @@
             id="inputPassword"
             v-model="Password"
             type="password"
-            class="form-control"
+            class="form-control shadow"
             :placeholder="$t('Manage.Password')"
             required>
           <label for="inputPassword">{{ $t('Manage.Password') }}</label>
@@ -61,7 +61,8 @@
 export default {
   fetch ({ store, params }) {
   },
-  asyncData (context) {},
+  asyncData (context) {
+  },
   data () {
     return {
       Account: '',
@@ -85,7 +86,6 @@ export default {
   methods: {
     Init () {
       return Promise.all([
-        this.GetLogo(),
         this.CheckAuth()
       ])
     },
@@ -108,6 +108,17 @@ export default {
         this.ErrorMessage = this.$t('Message.Manage.' + _Error.code)
       })
     },
+    CheckAuth () {
+      return this.$store.dispatch('AuthWatcher').then(() => {
+        this.$router.push('/manage/dashboard')
+      }).catch(() => {
+        if (this.$route.query.redirect) {
+          this.Error = true
+          this.Variant = 'info'
+          this.ErrorMessage = this.$t('Message.Manage.auth/expired')
+        }
+      })
+    },
     WriteLoginRecord (_Response) {
       return this.$Firebase('firestore').collection('LoginRecord').add({
         Account: this.Account,
@@ -119,24 +130,6 @@ export default {
           Variant: 'danger',
           ErrorMessage: this.$t('Message.Manage.auth/unexpected-error')
         })
-      })
-    },
-    GetLogo () {
-      return this.$Firebase('storage').ref().child('images/logo_icon.png').getDownloadURL().then((_URL) => {
-        this.$store.commit('SetLogo', _URL)
-      }).catch((e) => {
-        console.error(e)
-      })
-    },
-    async CheckAuth () {
-      await this.$store.dispatch('CheckAuth').then((_Response) => {
-        this.$router.push('/manage/dashboard')
-      }).catch((_Error) => {
-        if (this.$route.query.redirect) {
-          this.Error = true
-          this.Variant = 'info'
-          this.ErrorMessage = this.$t('Message.Manage.auth/expired')
-        }
       })
     }
   },

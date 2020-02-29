@@ -3,7 +3,7 @@
     <header id="AdminHeader">
       <b-navbar id="MainNav" toggleable="lg" type="dark" variant="dark">
         <b-navbar-brand href="#" class="site-logo">
-          <img :src="Logo" alt="More Patient">
+          <img :src="$store.state.profile.website.LogoAlt" alt="More Patient">
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse" />
         <b-collapse id="nav-collapse" is-nav>
@@ -49,7 +49,7 @@
               <b-dropdown-item href="#">
                 {{ $t('Manage.ResetPassword') }}
               </b-dropdown-item>
-              <b-dropdown-item href="#" @click="Logout">
+              <b-dropdown-item href="#" @click="Logout(false)">
                 {{ $t('Manage.Logout') }}
               </b-dropdown-item>
             </b-nav-item-dropdown>
@@ -69,16 +69,12 @@
 </template>
 
 <script>
-import { Firestore } from '@/plugins/firebase'
-import '~/assets/css/manage.css'
-
 export default {
   fetch ({ store, params }) {
     // The fetch method is used to fill the store before rendering the page
   },
   data () {
     return {
-      Logo: 'images/logo_icon_w.png',
       ManageMenu: {
         DashBoard: {
           Open: true,
@@ -129,19 +125,19 @@ export default {
           Sub: {
             PostList: {
               Open: true,
-              Path: '/manage/post/list'
+              Path: '/manage/posts/list'
             },
             PostAdd: {
               Open: true,
-              Path: '/manage/post/add'
+              Path: '/manage/posts/add'
             },
             PostCategory: {
               Open: true,
-              Path: '/manage/post/category'
+              Path: '/manage/posts/category'
             },
             PostAddCategory: {
               Open: true,
-              Path: '/manage/post/add_category'
+              Path: '/manage/posts/add_category'
             }
           }
         },
@@ -208,14 +204,12 @@ export default {
   methods: {
     Init () {
       return Promise.all([
-        this.GetLogo()
+        this.CheckAuth()
       ])
     },
-    GetLogo () {
-      return this.$Firebase('storage').ref().child(this.Logo).getDownloadURL().then((_URL) => {
-        this.$store.commit('SetLogo', _URL)
-      }).catch((e) => {
-        console.error(e)
+    CheckAuth () {
+      return this.$store.dispatch('AuthWatcher').catch(() => {
+        this.Logout(true)
       })
     },
     ChangeLanguage (_Language) {
@@ -230,14 +224,16 @@ export default {
         this.$router.push(_Value.Path)
       }
     },
-    Logout () {
+    Logout (_Alert = false) {
       this.$Firebase('auth').signOut().then((_Response) => {
-        this.$Swal.fire({
-          icon: 'success',
-          title: this.$t('Message.Success'),
-          text: this.$t('Message.Manage.logout/success-logout')
-        })
-        this.$router.push('/manage/login')
+        if (_Alert === false) {
+          this.$Swal.fire({
+            icon: 'success',
+            title: this.$t('Message.Success'),
+            text: this.$t('Message.Manage.logout/success-logout')
+          })
+        }
+        this.$router.push('/manage/login' + (_Alert === true ? '?redirect=true' : ''))
       }).catch((_Error) => {
         this.$Swal.fire({
           icon: 'error',

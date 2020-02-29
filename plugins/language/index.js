@@ -1,3 +1,12 @@
+/**
+ * Vuei18n 多國語系套件
+ *
+ * @since 0.0.1
+ * @version 0.0.1
+ * @author MPWEI
+ * @date 2020/01/23
+ */
+
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 

@@ -5,9 +5,10 @@ export const state = () => ({
   language: 'zh-tw',
   loading: false,
   profile: {
-    logo: '',
     menu: [],
     website: {
+      Logo: '',
+      LogoAlt: '',
       Designer: [],
       Subtitle: [],
       Title: [],
@@ -32,9 +33,6 @@ export const mutations = {
   },
   SetMenu (_State, _Menu) {
     _State.profile.menu = _Menu
-  },
-  SetLogo (_State, _URL) {
-    _State.profile.logo = _URL
   },
   SetAuthStatus (_State, _Auth) {
     if (_Auth) {
@@ -70,15 +68,15 @@ export const actions = {
         Menu.push(doc.data())
       })
       commit('SetMenu', Menu)
-    }).catch((e) => {
-      console.log(e)
+    }).catch((_Error) => {
+      console.log(_Error)
     })
   },
   async GetWebConfig ({ commit }) {
     await Firestore.collection('Config').doc('Website').get().then((doc) => {
       commit('SetWebConfig', doc.data())
-    }).catch((e) => {
-      console.log(e)
+    }).catch((_Error) => {
+      console.log(_Error)
     })
   },
   GetLang ({ commit }) {
@@ -86,12 +84,22 @@ export const actions = {
   },
   CheckAuth ({ commit }) {
     return new Promise((resolve, reject) => {
+      const User = Auth.currentUser
+      if (User !== null) {
+        resolve(true)
+      } else {
+        reject(new Error('auth/expired'))
+      }
+    })
+  },
+  AuthWatcher ({ commit }) {
+    return new Promise((resolve, reject) => {
       Auth.onAuthStateChanged((_Auth) => {
         commit('SetAuthStatus', _Auth)
         if (_Auth) {
           resolve(true)
         } else {
-          reject(new Error('Something wrong happened'))
+          reject(new Error('auth/expired'))
         }
       })
     })

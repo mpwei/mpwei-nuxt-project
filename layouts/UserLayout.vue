@@ -4,7 +4,7 @@
       <b-navbar type="light" variant="white">
         <div class="container">
           <b-navbar-brand to="/" class="site-logo mr-auto">
-            <img v-lazy="$store.state.profile.logo" alt="More Patient">
+            <img :src="$store.state.profile.website.Logo" alt="More Patient">
             <h1 class="d-inline ml-2">
               More Patient.
             </h1>
@@ -57,13 +57,7 @@
 </template>
 
 <script>
-import { Firestore } from '@/plugins/firebase'
-import '~/assets/css/user.css'
-
 export default {
-  fetch ({ store, params }) {
-    // The fetch method is used to fill the store before rendering the page
-  },
   data () {
     return {
       Social: {
@@ -79,28 +73,9 @@ export default {
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      this.Init().then(() => {
-        this.$nuxt.$loading.finish()
-      }).catch(() => {
-        this.$nuxt.$loading.finish()
-      })
-    })
+    this.$Firebase('analytics')
   },
   methods: {
-    Init () {
-      return Promise.all([
-        this.GetLogo()
-      ])
-    },
-    GetLogo () {
-      return this.$Firebase('storage').ref().child('images/logo_icon.png').getDownloadURL().then((_URL) => {
-        this.$store.commit('SetLogo', _URL)
-      }).catch((e) => {
-        console.error(e)
-      })
-    },
     ChangeLanguage (_Language) {
       this.$store.commit('SetLang', _Language)
       this.$i18n.locale = this.$store.state.language
