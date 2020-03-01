@@ -159,7 +159,6 @@
     data () {
       return {
         NowLanguage: '',
-        Languages: [],
         Loading: true,
         PostData: {
           Title: {},
@@ -182,7 +181,6 @@
     },
     mounted () {
       this.NowLanguage = this.$store.state.language
-      this.Languages = this.$store.state.locales
       this.$nextTick(() => {
         this.$nuxt.$loading.start()
         this.Init().then(() => {

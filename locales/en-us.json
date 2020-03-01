@@ -1,7 +1,12 @@
 {
   "Global": {
     "Confirm": "OK",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "GlobalSetting": "Global Setting",
+    "Social": "Social",
+    "SEO": "SEO",
+    "ContactInfo": "Contact Info",
+    "Save": "Save"
   },
   "Language": {
     "en-us": "English",
@@ -108,6 +113,13 @@
       "CustomMenu/LinkOptionPostCategory": "Post Category",
       "CustomMenu/LinkOptionProductCategory": "Product Category",
       "CustomMenu/LinkOptionCustom": "Custom Link"
+    },
+    "Global": {
+      "GlobalSetting": "Global Setting",
+      "Social": "Social",
+      "SEO": "SEO",
+      "ContactInfo": "Contact Info",
+      "Save": "Save"
     },
     "Alert": "Alert",
     "MediaStore": "Media",

@@ -1,7 +1,12 @@
 {
   "Global": {
     "Confirm": "確定",
-    "Cancel": "取消"
+    "Cancel": "取消",
+    "GlobalSetting": "全域設定",
+    "Social": "社群連結",
+    "SEO": "SEO",
+    "ContactInfo": "聯絡資訊",
+    "Save": "儲存設定"
   },
   "Language": {
     "en-us": "English",
@@ -108,6 +113,20 @@
       "CustomMenu/LinkOptionPostCategory": "文章分類",
       "CustomMenu/LinkOptionProductCategory": "商品分類",
       "CustomMenu/LinkOptionCustom": "自訂連結"
+    },
+    "Global": {
+      "GlobalSetting": "全域設定",
+      "Social": "社群連結",
+      "SEO": "SEO",
+      "ContactInfo": "聯絡資訊",
+      "WebsiteSwitch": "網站開關",
+      "WebsiteSwitchInfo": "網站離線前台頁面將無法訪問，但您可以繼續使用後台新增或編輯項目。",
+      "WebsiteTitle": "網站主標題",
+      "WebsiteSubTitle": "網站次標題",
+      "WebsiteYear": "網站年份",
+      "WebsiteYearInfo": "可填入區間或單一年份，例: 2010 ~ 2015",
+      "Logo": "Logo設定",
+      "Save": "儲存設定"
     },
     "Alert": "通知",
     "MediaStore": "媒體櫃",

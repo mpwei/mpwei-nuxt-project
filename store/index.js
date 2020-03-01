@@ -6,9 +6,8 @@ export const state = () => ({
   loading: false,
   profile: {
     website: {
-      Logo: '',
-      LogoAlt: '',
-      Designer: [],
+      Logo: {},
+      LogoAlt: {},
       Subtitle: [],
       Menu: [],
       Title: [],

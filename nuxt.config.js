@@ -30,6 +30,7 @@ export default {
   */
   css: [
     'font-awesome/css/font-awesome.css',
+    'vue2-datepicker/index.css',
     '~/assets/css/global.css',
     '~/assets/css/user.css',
     '~/assets/css/manage.css'
@@ -42,7 +43,8 @@ export default {
     { src: '~/plugins/SweetAlert2' },
     { src: '~/plugins/language' },
     { src: '~/plugins/moment' },
-    { src: '~/plugins/Editor', mode: 'client' }
+    { src: '~/plugins/Editor', mode: 'client' },
+    { src: '~/plugins/Datepicker', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules

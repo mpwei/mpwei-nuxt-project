@@ -3,7 +3,7 @@
     <section class="container my-lg-5">
       <form class="form-signin" @submit.prevent="DoLogin">
         <div class="mb-4">
-          <img :src="$store.state.profile.website.Logo" :alt="$store.state.profile.website.Title[$store.state.language]" class="mb-4 mx-auto d-block">
+          <img :src="$store.state.profile.website.Logo.Url" :alt="$store.state.profile.website.Title[$store.state.language]" class="mb-4 mx-auto d-block">
           <h1 class="text-center h3 mb-3 font-weight-bold">
             {{ $t('Manage.ManageLogin') }}
           </h1>

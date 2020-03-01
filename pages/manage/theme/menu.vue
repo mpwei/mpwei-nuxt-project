@@ -83,10 +83,10 @@
           </draggable>
         </div>
         <div class="my-3 p-3 bg-white rounded shadow-sm d-flex justify-content-between">
-          <b-button variant="info" type="button" @click="AddMenu">
+          <b-button variant="info" size="sm" type="button" @click="AddMenu">
             <i class="fa fa-plus-circle" aria-hidden="true" /> {{ $t('Manage.Themes.CustomMenu/AddMenu') }}
           </b-button>
-          <b-button variant="success" type="submit">
+          <b-button variant="success" size="sm" type="submit">
             {{ $t('Manage.Themes.CustomMenu/Save') }}
           </b-button>
         </div>

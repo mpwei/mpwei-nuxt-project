@@ -3,7 +3,7 @@
     <header id="AdminHeader">
       <b-navbar id="MainNav" toggleable="lg" type="dark" variant="dark">
         <b-navbar-brand href="#" class="site-logo">
-          <img :src="$store.state.profile.website.LogoAlt" alt="More Patient">
+          <img :src="$store.state.profile.website.LogoAlt.Url" alt="More Patient">
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse" />
         <b-collapse id="nav-collapse" is-nav>
@@ -21,7 +21,7 @@
             <b-nav-item v-b-tooltip.hover href="#" right :title="$t('Manage.MediaStore')">
               <i class="fa fa-image" />
             </b-nav-item>
-            <b-nav-item v-b-tooltip.hover href="#" right :title="$t('Manage.SystemConfig')">
+            <b-nav-item v-b-tooltip.hover to="/manage/global/setting" right :title="$t('Manage.SystemConfig')">
               <i class="fa fa-gear" />
             </b-nav-item>
             <b-nav-item-dropdown v-b-tooltip.hover text="Lang" right :title="$t('Manage.LangSwitcher')">
@@ -37,7 +37,7 @@
               <template v-slot:button-content>
                 <i class="fa fa-ellipsis-v" aria-hidden="true" />
               </template>
-              <b-dropdown-item href="#">
+              <b-dropdown-item href="/" target="_blank">
                 {{ $t('Manage.GoToWebsite') }}
               </b-dropdown-item>
               <b-dropdown-item href="#">

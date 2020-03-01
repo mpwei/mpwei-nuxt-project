@@ -4,7 +4,7 @@
       <b-navbar type="light" variant="white">
         <div class="container">
           <b-navbar-brand to="/" class="site-logo mr-auto">
-            <img :src="$store.state.profile.website.Logo" alt="More Patient">
+            <img :src="$store.state.profile.website.Logo.Url" alt="More Patient">
             <h1 class="d-inline ml-2">
               More Patient.
             </h1>
@@ -51,7 +51,7 @@
     </header>
     <nuxt />
     <footer id="footer" class="text-secondary py-3 text-center border-top">
-      Copyright © {{ $store.state.profile.website.Year }} {{ $store.state.profile.website.Title[$store.state.language] }} All rights reserved. Designed by {{ $store.state.profile.website.Designer[$store.state.language] }}
+      Copyright © {{ $store.state.profile.website.Year }} {{ $store.state.profile.website.Title[$store.state.language] }} All rights reserved. Designed by MPWEI
     </footer>
   </div>
 </template>
