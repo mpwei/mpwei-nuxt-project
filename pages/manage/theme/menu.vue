@@ -18,7 +18,7 @@
             @end="drag = false"
           >
             <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-              <b-card v-for="(Data, Index) in MenuList" :key="Data.No" no-body class="mb-2 shadow-sm">
+              <b-card v-for="(Data, Index) in MenuList" :key="Index" no-body class="mb-2 shadow-sm">
                 <b-card-header header-tag="header" class="p-0 text-left d-flex justify-content-between align-items-center" role="tab">
                   <div class="d-flex align-items-center">
                     <b-button
@@ -158,7 +158,7 @@
         this.$Swal.fire({
           icon: 'warning',
           title: this.$t('Message.AskDelete'),
-          text: this.$t('Message.Manage.theme/menu-delete-confirm'),
+          text: this.$t('Message.Manage.theme/delete-confirm'),
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
@@ -171,15 +171,18 @@
         })
       },
       async SaveMenu () {
+        this.Loading = true
         await this.$Firebase('firestore').collection('Config').doc('Website').set({
           Menu: this.MenuList
         }, { merge: true }).then(() => {
+          this.Loading = false
           this.$Swal.fire({
             icon: 'success',
             title: this.$t('Message.Success'),
             text: this.$t('Message.Manage.theme/save-success')
           })
         }).catch((_Error) => {
+          this.Loading = false
           this.$Swal.fire({
             icon: 'error',
             title: this.$t('Message.Error'),

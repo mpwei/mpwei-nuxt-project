@@ -2,10 +2,6 @@
   "Global": {
     "Confirm": "確定",
     "Cancel": "取消",
-    "GlobalSetting": "全域設定",
-    "Social": "社群連結",
-    "SEO": "SEO",
-    "ContactInfo": "聯絡資訊",
     "Save": "儲存設定"
   },
   "Language": {
@@ -126,6 +122,18 @@
       "WebsiteYear": "網站年份",
       "WebsiteYearInfo": "可填入區間或單一年份，例: 2010 ~ 2015",
       "Logo": "Logo設定",
+      "Browse": "瀏覽",
+      "Url": "連結",
+      "Alt": "Alt",
+      "Title": "Title",
+      "Description": "全域描述",
+      "Keyword": "全域關鍵字",
+      "CompanyName": "公司名稱",
+      "Address": "地址",
+      "Phone": "市內電話",
+      "Mobile": "行動電話",
+      "Fax": "傳真",
+      "Email": "電子信箱",
       "Save": "儲存設定"
     },
     "Alert": "通知",
@@ -145,6 +153,9 @@
     "Info": "提示",
     "AskDelete": "確認刪除？",
     "Manage": {
+      "global/save-success": "設定儲存成功",
+      "global/save-fail": "設定儲存失敗",
+      "global/get-data-fail": "取得資料失敗",
       "auth/invalid-email": "帳號不符規定",
       "auth/user-disabled": "此帳號已停用！",
       "auth/user-not-found": "找不到該使用者！",
@@ -170,7 +181,7 @@
       "theme/get-list-fail": "列表取得失敗",
       "theme/save-success": "版面設定儲存成功",
       "theme/save-fail": "版面設定儲存失敗！",
-      "theme/menu-delete-confirm": "是否要刪除選單？"
+      "theme/delete-confirm": "是否要刪除此項目？"
     }
   }
 }

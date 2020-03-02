@@ -2,10 +2,6 @@
   "Global": {
     "Confirm": "OK",
     "Cancel": "Cancel",
-    "GlobalSetting": "Global Setting",
-    "Social": "Social",
-    "SEO": "SEO",
-    "ContactInfo": "Contact Info",
     "Save": "Save"
   },
   "Language": {
@@ -119,6 +115,25 @@
       "Social": "Social",
       "SEO": "SEO",
       "ContactInfo": "Contact Info",
+      "WebsiteSwitch": "Website Switch",
+      "WebsiteSwitchInfo": "Closing this switch will stop website service，but you can use system to manage your content.",
+      "WebsiteTitle": "Title",
+      "WebsiteSubTitle": "SubTitle",
+      "WebsiteYear": "Year",
+      "WebsiteYearInfo": "Can be filled in intervals or single years，Ex: 2010 ~ 2015",
+      "Logo": "Logo Setting",
+      "Browse": "Browse",
+      "Url": "Url",
+      "Alt": "Alt",
+      "Title": "Title",
+      "Description": "Description",
+      "Keyword": "Keyword",
+      "CompanyName": "Company",
+      "Address": "Address",
+      "Phone": "Phone",
+      "Mobile": "Mobile",
+      "Fax": "Fax",
+      "Email": "Email",
       "Save": "Save"
     },
     "Alert": "Alert",
@@ -162,7 +177,7 @@
       "theme/get-list-fail": "Fail to get list",
       "theme/save-success": "Theme settings success to save",
       "theme/save-fail": "Theme settings fail to save!",
-      "theme/menu-delete-confirm": "Would you remove this menu?"
+      "theme/delete-confirm": "Would you remove this item?"
     }
   }
 }
