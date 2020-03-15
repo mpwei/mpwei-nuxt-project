@@ -67,9 +67,11 @@ typings/
 
 # nuxt.js build output
 .nuxt
+nuxt
 
 # Nuxt generate
 dist
+/public
 
 # vuepress build output
 .vuepress/dist
@@ -88,3 +90,5 @@ sw.*
 
 # Vim swap files
 *.swp
+config.js
+.firebase/

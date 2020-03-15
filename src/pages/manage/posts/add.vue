@@ -78,7 +78,7 @@
               <h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
                 {{ $t('Manage.Post.PostAdd/Content') }}
               </h6>
-              <vue-editor v-model="PostData.Content[NowLanguage]" class="mb-4" />
+              <VueEditor v-model="PostData.Content[NowLanguage]" class="mb-4" />
               <h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
                 {{ $t('Manage.Post.PostAdd/Excerpt') }}
               </h6>
@@ -151,11 +151,18 @@
 </template>
 
 <script>
+  let VueEditor
+  if (process.client) {
+    VueEditor = require('vue2-editor').VueEditor
+  }
   export default {
     layout: 'ManageLayout',
     middleware: [
       'ManageAuth'
     ],
+    components: {
+      VueEditor
+    },
     data () {
       return {
         NowLanguage: '',
