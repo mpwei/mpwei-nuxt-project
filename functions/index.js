@@ -7,19 +7,15 @@ const config = {
     dev: false,
     buildDir: "nuxt",
     build: {
-        publicPath: "/assets/"
+        publicPath: (process.env.NODE_ENV === 'production' ? "//mpwei-2889f.firebaseapp.com" : "//localhost") + "/assets/"
     }
 };
 const nuxt = new Nuxt(config);
 
-function handleRequest(req, res) {
-    console.log("log3");
+async function handleRequest(req, res) {
     res.set("Cache-Control", "public, max-age=300, s-maxage=600");
-    return new Promise((resolve, reject) => {
-        nuxt.render(req, res, promise => {
-            promise.then(resolve).catch(reject);
-        });
-    });
+    await nuxt.ready();
+    await nuxt.render(req, res);
 }
 
 app.use(handleRequest);

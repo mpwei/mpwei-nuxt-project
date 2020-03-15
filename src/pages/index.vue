@@ -64,7 +64,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VueMoment from 'vue-moment'
 import { Firestore } from '@/plugins/firebase'
+Vue.use(VueMoment)
 
 export default {
   layout: 'UserLayout',

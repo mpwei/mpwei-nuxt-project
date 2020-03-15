@@ -22,15 +22,15 @@ export default {
     color: '#ffc107',
     failedColor: 'red',
     height: '3px',
-    duration: 10000,
-    continuous: true
+    duration: 7000,
+    continuous: false
   },
   /*
   ** Global CSS
   */
   css: [
     'font-awesome/css/font-awesome.css',
-    'vue2-datepicker/index.css',
+    // 'vue2-datepicker/index.css',
     '~/assets/css/global.css',
     '~/assets/css/user.css',
     '~/assets/css/manage.css'
@@ -40,11 +40,8 @@ export default {
   */
   plugins: [
     { src: '~/plugins/firebase' },
-    { src: '~/plugins/SweetAlert2' },
-    { src: '~/plugins/language' },
-    { src: '~/plugins/moment' },
-    { src: '~/plugins/Editor', mode: 'client' },
-    { src: '~/plugins/Datepicker', mode: 'client' }
+    { src: '~/plugins/SweetAlert2', mode: 'client' },
+    { src: '~/plugins/language' }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -60,17 +57,17 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    // '@nuxtjs/axios',
+    '@nuxtjs/pwa'
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    // '@nuxtjs/dotenv'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {
-  },
+  // axios: {
+  // },
   /*
   ** Build configuration
   */
