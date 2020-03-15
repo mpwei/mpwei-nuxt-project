@@ -74,6 +74,7 @@ export default {
   /*
   ** Build configuration
   */
+  extractCSS: true,
   build: {
     /*
     ** You can extend webpack config here
