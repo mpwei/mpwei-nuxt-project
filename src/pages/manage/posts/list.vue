@@ -43,8 +43,8 @@
 
 <script>
   import Vue from 'vue'
-  import VueMoment from 'vue-moment'
-  Vue.use(VueMoment)
+  import { TablePlugin } from 'bootstrap-vue'
+  Vue.use(TablePlugin)
 
   export default {
     layout: 'ManageLayout',
@@ -93,7 +93,7 @@
               ID: doc.id,
               Title: doc.data().Title,
               Slug: doc.data().Slug,
-              PostTime: this.$moment.unix(doc.data().PostTime.seconds).format('Y-MM-DD HH:mm:ss'),
+              PostTime: this.$dayjs.unix(doc.data().PostTime.seconds).format('YYYY-MM-DD HH:mm:ss'),
               Tags: doc.data().Tags
             })
           })

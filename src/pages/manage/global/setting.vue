@@ -227,6 +227,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import { TabsPlugin, InputGroupPlugin } from 'bootstrap-vue'
+Vue.use(TabsPlugin)
+Vue.use(InputGroupPlugin)
+
 export default {
   layout: 'ManageLayout',
   middleware: [

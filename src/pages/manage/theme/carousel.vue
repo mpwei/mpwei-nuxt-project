@@ -1,40 +1,12 @@
 <template>
-  <section id="PostList" class="AdminContent">
+  <section id="Carousel" class="AdminContent">
     <div class="container">
       <div class="my-3 p-3 bg-white rounded shadow-sm">
         <h1 class="font-weight-bold border-bottom pb-3 h4 mb-3">
-          {{ $t('Manage.Menu.PostList') }}
+          {{ $t('Manage.Menu.ThemeCarousel') }}
         </h1>
         <div v-if="Loading" class="text-center p-5">
           <b-spinner label="Loading..." />
-        </div>
-        <b-table
-          v-if="(List.length > 0 && !Loading)"
-          hover
-          borderless
-          :items="List"
-          :fields="Fields"
-          head-variant="dark"
-          class="mb-0 fs-form-sm">
-          <template v-slot:cell(Title)="row">
-            {{ row.item.Title[$store.state.language] }}
-          </template>
-          <template v-slot:cell(Tags)="row">
-            <b-badge v-for="(value, index) in row.item.Tags" :key="index" variant="secondary" pill class="mr-1 mb-1">
-              {{ value }}
-            </b-badge>
-          </template>
-          <template v-slot:cell(Action)="row">
-            <b-button size="sm" class="mr-2" @click="$router.push({ name: 'PostEdit', params: { slug: row.item.Slug }})">
-              <i class="fa fa-edit" />
-            </b-button>
-            <b-button variant="danger" size="sm" @click="RemovePost(row.item.Slug)">
-              <i class="fa fa-remove" />
-            </b-button>
-          </template>
-        </b-table>
-        <div v-if="(List.length === 0 && !Loading)" class="text-center p-5">
-          {{ $t('Message.Manage.post/no-category') }}
         </div>
       </div>
     </div>
@@ -42,10 +14,6 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-  import VueMoment from 'vue-moment'
-  Vue.use(VueMoment)
-
   export default {
     layout: 'ManageLayout',
     middleware: [
@@ -53,19 +21,8 @@
     ],
     data () {
       return {
-        List: [],
+        Carousel: [],
         Loading: true
-      }
-    },
-    computed: {
-      Fields () {
-        return [
-          { key: 'Title', label: this.$t('Manage.Post.PostList/Title') },
-          { key: 'Slug', label: this.$t('Manage.Post.PostList/Slug') },
-          { key: 'PostTime', label: this.$t('Manage.Post.PostList/PostTime') },
-          { key: 'Tags', label: this.$t('Manage.Post.PostList/Tags') },
-          { key: 'Action', label: this.$t('Manage.Post.PostList/Action') }
-        ]
       }
     },
     mounted () {
@@ -82,21 +39,13 @@
     methods: {
       Init () {
         return Promise.all([
-          this.GetPostList()
+          this.GetCarousel()
         ])
       },
-      GetPostList () {
+      GetCarousel () {
         this.List = []
-        return this.$Firebase('firestore').collection('Posts').orderBy('PostTime', 'desc').get().then((_Response) => {
-          _Response.forEach((doc) => {
-            this.List.push({
-              ID: doc.id,
-              Title: doc.data().Title,
-              Slug: doc.data().Slug,
-              PostTime: this.$moment.unix(doc.data().PostTime.seconds).format('Y-MM-DD HH:mm:ss'),
-              Tags: doc.data().Tags
-            })
-          })
+        return this.$Firebase('firestore').collection('Config').doc('Carousel').get().then((Document) => {
+          this.Carousel = Document.data().Data
         }).catch((_Error) => {
           this.$Swal.fire({
             icon: 'error',

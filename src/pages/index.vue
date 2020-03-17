@@ -48,7 +48,7 @@
           </b-card-body>
           <b-card-footer class="bg-white border-0 text-muted small">
             <span v-for="(tag, subindex) in value.Tags" :key="subindex">{{ tag }}</span>
-            <span>{{ $moment.unix(value.PostTime.seconds).format("Y-MM-DD HH:mm:ss") }}</span>
+            <span>{{ $dayjs.unix(value.PostTime.seconds).format("YYYY-MM-DD HH:mm:ss") }}</span>
           </b-card-footer>
         </b-card>
         <b-card v-for="number in ComingSoon()" :key="number" no-body class="rounded-0">
@@ -65,9 +65,9 @@
 
 <script>
 import Vue from 'vue'
-import VueMoment from 'vue-moment'
+import { CarouselPlugin } from 'bootstrap-vue'
 import { Firestore } from '@/plugins/firebase'
-Vue.use(VueMoment)
+Vue.use(CarouselPlugin)
 
 export default {
   layout: 'UserLayout',

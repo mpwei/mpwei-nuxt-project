@@ -20,7 +20,7 @@
     "copy:server": "cp -R src/.nuxt/* functions/nuxt",
     "copyassets": "npm run copydist && npm run copystatic",
     "copydist": "cp -R functions/nuxt/dist/ public/assets",
-    "copystatic": "cp -R src/static/ public",
+    "copystatic": "cp -R src/static/* public",
     "clean:client": "rimraf public/assets/*",
     "clean:server": "rimraf functions/nuxt/*",
     "build:nuxt": "cd \"src\" && npm run build"
@@ -28,5 +28,6 @@
   "devDependencies": {
     "cross-env": "^5.0.5",
     "rimraf": "^2.6.2"
-  }
+  },
+  "dependencies": {}
 }

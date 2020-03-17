@@ -151,6 +151,12 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import { ImagePlugin, FormTagsPlugin, FormFilePlugin } from 'bootstrap-vue'
+  Vue.use(ImagePlugin)
+  Vue.use(FormTagsPlugin)
+  Vue.use(FormFilePlugin)
+
   let VueEditor
   if (process.client) {
     VueEditor = require('vue2-editor').VueEditor

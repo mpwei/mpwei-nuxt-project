@@ -30,7 +30,6 @@ export default {
   */
   css: [
     'font-awesome/css/font-awesome.css',
-    // 'vue2-datepicker/index.css',
     '~/assets/css/global.css',
     '~/assets/css/user.css',
     '~/assets/css/manage.css'
@@ -54,14 +53,33 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
-    // Doc: https://axios.nuxtjs.org/usage
     // '@nuxtjs/axios',
-    '@nuxtjs/pwa'
-    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/pwa',
+    '@ax2/dayjs-module'
     // '@nuxtjs/dotenv'
   ],
+  bootstrapVue: {
+    components: [
+      'BButton',
+      'BSpinner',
+      'BBadge',
+      'BAlert'
+    ],
+    componentPlugins: [
+      'CardPlugin',
+      'FormSelectPlugin',
+      'FormPlugin',
+      'FormGroupPlugin',
+      'FormCheckboxPlugin',
+      'FormInputPlugin',
+      'FormTextareaPlugin',
+      'FormRadioPlugin',
+      'LayoutPlugin',
+      'NavbarPlugin'
+    ],
+    directivePlugins: ['VBTooltipPlugin']
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
