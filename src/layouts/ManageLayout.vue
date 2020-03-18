@@ -69,179 +69,200 @@
 </template>
 
 <script>
-export default {
-  fetch ({ store, params }) {
-    // The fetch method is used to fill the store before rendering the page
-  },
-  data () {
-    return {
-      ManageMenu: {
-        DashBoard: {
-          Open: true,
-          Sub: false,
-          Path: '/manage/dashboard'
-        },
-        Theme: {
-          Open: 'true',
-          Sub: {
-            ThemeCarousel: {
-              Open: true,
-              Path: '/manage/theme/carousel'
-            },
-            ThemeCustomMenu: {
-              Open: true,
-              Path: '/manage/theme/menu'
-            }
-          }
-        },
-        Order: {
-          Open: false,
-          Sub: false,
-          Path: '/manage/order/list'
-        },
-        Product: {
-          Open: false,
-          Sub: {
-            ProductList: {
-              Open: true,
-              Path: '/manage/product/list'
-            },
-            ProductAdd: {
-              Open: true,
-              Path: '/manage/product/add'
-            },
-            ProductCategory: {
-              Open: true,
-              Path: '/manage/product/category'
-            },
-            ProductAddCategory: {
-              Open: true,
-              Path: '/manage/product/add_category'
-            }
-          }
-        },
-        Post: {
-          Open: true,
-          Sub: {
-            PostList: {
-              Open: true,
-              Path: '/manage/posts/list'
-            },
-            PostAdd: {
-              Open: true,
-              Path: '/manage/posts/add'
-            },
-            PostCategory: {
-              Open: true,
-              Path: '/manage/posts/category'
-            },
-            PostAddCategory: {
-              Open: true,
-              Path: '/manage/posts/add_category'
-            }
-          }
-        },
-        Member: {
-          Open: false,
-          Sub: {
-            MemberList: {
-              Open: true,
-              Path: '/manage/member/list'
-            },
-            MemberAdd: {
-              Open: true,
-              Path: '/manage/member/add'
-            },
-            AdminList: {
-              Open: true,
-              Path: '/manage/admin/list'
-            },
-            AdminAdd: {
-              Open: true,
-              Path: '/manage/admin/add'
-            },
-            MemberGroup: {
-              Open: false,
-              Path: '/manage/member/group'
-            },
-            AdminGroup: {
-              Open: false,
-              Path: '/manage/admin/group'
-            },
-            AdminPermission: {
-              Open: false,
-              Path: '/manage/admin/permission'
-            }
-          }
-        },
-        MessageCenter: {
-          Open: false,
-          Sub: {
-            Customer: {
-              Open: true,
-              Path: '/manage/message/customer'
-            },
-            System: {
-              Open: true,
-              Path: '/manage/message/system'
-            }
-          }
-        }
-      },
-      SubNavs: []
-    }
-  },
-  mounted () {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      this.Init().then(() => {
-        this.$nuxt.$loading.finish()
-      }).catch(() => {
-        this.$nuxt.$loading.finish()
-      })
-    })
-  },
-  methods: {
-    Init () {
-      return Promise.all([
-        this.CheckAuth()
-      ])
+  import Vue from 'vue'
+  import {
+    VBTooltipPlugin,
+    FormSelectPlugin,
+    FormPlugin,
+    FormGroupPlugin,
+    FormCheckboxPlugin,
+    FormInputPlugin,
+    FormTextareaPlugin,
+    FormRadioPlugin
+  } from 'bootstrap-vue'
+
+  Vue.use(VBTooltipPlugin)
+  Vue.use(FormSelectPlugin)
+  Vue.use(FormPlugin)
+  Vue.use(FormGroupPlugin)
+  Vue.use(FormCheckboxPlugin)
+  Vue.use(FormInputPlugin)
+  Vue.use(FormTextareaPlugin)
+  Vue.use(FormRadioPlugin)
+
+  export default {
+    fetch ({ store, params }) {
+      // The fetch method is used to fill the store before rendering the page
     },
-    CheckAuth () {
-      return this.$store.dispatch('AuthWatcher').catch(() => {
-        this.Logout(true)
-      })
-    },
-    ChangeLanguage (_Language) {
-      this.$store.commit('SetLang', _Language)
-      this.$i18n.locale = this.$store.state.language
-    },
-    SelectNav (_Index, _Value) {
-      this.SubNavs = []
-      if (_Value.Sub) {
-        this.SubNavs = _Value.Sub
-      } else {
-        this.$router.push(_Value.Path)
+    data () {
+      return {
+        ManageMenu: {
+          DashBoard: {
+            Open: true,
+            Sub: false,
+            Path: '/manage/dashboard'
+          },
+          Theme: {
+            Open: 'true',
+            Sub: {
+              ThemeCarousel: {
+                Open: true,
+                Path: '/manage/theme/carousel'
+              },
+              ThemeCustomMenu: {
+                Open: true,
+                Path: '/manage/theme/menu'
+              }
+            }
+          },
+          Order: {
+            Open: false,
+            Sub: false,
+            Path: '/manage/order/list'
+          },
+          Product: {
+            Open: false,
+            Sub: {
+              ProductList: {
+                Open: true,
+                Path: '/manage/product/list'
+              },
+              ProductAdd: {
+                Open: true,
+                Path: '/manage/product/add'
+              },
+              ProductCategory: {
+                Open: true,
+                Path: '/manage/product/category'
+              },
+              ProductAddCategory: {
+                Open: true,
+                Path: '/manage/product/add_category'
+              }
+            }
+          },
+          Post: {
+            Open: true,
+            Sub: {
+              PostList: {
+                Open: true,
+                Path: '/manage/posts/list'
+              },
+              PostAdd: {
+                Open: true,
+                Path: '/manage/posts/add'
+              },
+              PostCategory: {
+                Open: true,
+                Path: '/manage/posts/category'
+              },
+              PostAddCategory: {
+                Open: true,
+                Path: '/manage/posts/add_category'
+              }
+            }
+          },
+          Member: {
+            Open: false,
+            Sub: {
+              MemberList: {
+                Open: true,
+                Path: '/manage/member/list'
+              },
+              MemberAdd: {
+                Open: true,
+                Path: '/manage/member/add'
+              },
+              AdminList: {
+                Open: true,
+                Path: '/manage/admin/list'
+              },
+              AdminAdd: {
+                Open: true,
+                Path: '/manage/admin/add'
+              },
+              MemberGroup: {
+                Open: false,
+                Path: '/manage/member/group'
+              },
+              AdminGroup: {
+                Open: false,
+                Path: '/manage/admin/group'
+              },
+              AdminPermission: {
+                Open: false,
+                Path: '/manage/admin/permission'
+              }
+            }
+          },
+          MessageCenter: {
+            Open: false,
+            Sub: {
+              Customer: {
+                Open: true,
+                Path: '/manage/message/customer'
+              },
+              System: {
+                Open: true,
+                Path: '/manage/message/system'
+              }
+            }
+          }
+        },
+        SubNavs: []
       }
     },
-    Logout (_Alert = false) {
-      this.$Firebase('auth').signOut().then((_Response) => {
-        if (_Alert === false) {
-          this.$Swal.fire({
-            icon: 'success',
-            title: this.$t('Message.Success'),
-            text: this.$t('Message.Manage.logout/success-logout')
-          })
-        }
-        this.$router.push('/manage/login' + (_Alert === true ? '?redirect=true' : ''))
-      }).catch((_Error) => {
-        this.$Swal.fire({
-          icon: 'error',
-          title: this.$t('Message.Error'),
-          text: this.$t('Message.Manage.auth/unexpected-error')
+    mounted () {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start()
+        this.Init().then(() => {
+          this.$nuxt.$loading.finish()
+        }).catch(() => {
+          this.$nuxt.$loading.finish()
         })
       })
+    },
+    methods: {
+      Init () {
+        return Promise.all([
+          this.CheckAuth()
+        ])
+      },
+      CheckAuth () {
+        return this.$store.dispatch('AuthWatcher').catch(() => {
+          this.Logout(true)
+        })
+      },
+      ChangeLanguage (_Language) {
+        this.$store.commit('SetLang', _Language)
+        this.$i18n.locale = this.$store.state.language
+      },
+      SelectNav (_Index, _Value) {
+        this.SubNavs = []
+        if (_Value.Sub) {
+          this.SubNavs = _Value.Sub
+        } else {
+          this.$router.push(_Value.Path)
+        }
+      },
+      Logout (_Alert = false) {
+        this.$Firebase('auth').signOut().then((_Response) => {
+          if (_Alert === false) {
+            this.$Swal.fire({
+              icon: 'success',
+              title: this.$t('Message.Success'),
+              text: this.$t('Message.Manage.logout/success-logout')
+            })
+          }
+          this.$router.push('/manage/login' + (_Alert === true ? '?redirect=true' : ''))
+        }).catch((_Error) => {
+          this.$Swal.fire({
+            icon: 'error',
+            title: this.$t('Message.Error'),
+            text: this.$t('Message.Manage.auth/unexpected-error')
+          })
+        })
+      }
     }
   }
-}
 </script>

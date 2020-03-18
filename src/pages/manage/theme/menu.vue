@@ -18,7 +18,7 @@
             @end="drag = false"
           >
             <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-              <b-card v-for="(Data, Index) in MenuList" :key="Index" no-body class="mb-2 shadow-sm">
+              <b-card v-for="(Data, Index) in MenuList" :key="Index + 'card'" no-body class="mb-2 shadow-sm">
                 <b-card-header header-tag="header" class="p-0 text-left d-flex justify-content-between align-items-center" role="tab">
                   <div class="d-flex align-items-center">
                     <b-button

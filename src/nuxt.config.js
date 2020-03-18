@@ -68,17 +68,9 @@ export default {
     ],
     componentPlugins: [
       'CardPlugin',
-      'FormSelectPlugin',
-      'FormPlugin',
-      'FormGroupPlugin',
-      'FormCheckboxPlugin',
-      'FormInputPlugin',
-      'FormTextareaPlugin',
-      'FormRadioPlugin',
       'LayoutPlugin',
       'NavbarPlugin'
-    ],
-    directivePlugins: ['VBTooltipPlugin']
+    ]
   },
   /*
   ** Axios module configuration
