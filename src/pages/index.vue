@@ -65,9 +65,10 @@
 
 <script>
 import Vue from 'vue'
-import { CarouselPlugin } from 'bootstrap-vue'
+import { CarouselPlugin, CardPlugin } from 'bootstrap-vue'
 import { Firestore } from '@/plugins/firebase'
 Vue.use(CarouselPlugin)
+Vue.use(CardPlugin)
 
 export default {
   layout: 'UserLayout',

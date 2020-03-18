@@ -49,6 +49,20 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module'
   ],
+  pwa: {
+    workbox: {
+      runtimeCaching: [
+        {
+          // Should be a regex string. Compiles into new RegExp('https://my-cdn.com/.*')
+          urlPattern: 'https://firebasestorage.googleapis.com/v0/b/mpwei-2889f.appspot.com/.*',
+          // Defaults to `networkFirst` if omitted
+          // handler: 'networkFirst',
+          // Defaults to `GET` if omitted
+          // method: 'GET'
+        }
+      ]
+    }
+  },
   /*
   ** Nuxt.js modules
   */
@@ -67,8 +81,6 @@ export default {
       'BAlert'
     ],
     componentPlugins: [
-      'CardPlugin',
-      'LayoutPlugin',
       'NavbarPlugin'
     ]
   },
@@ -83,6 +95,11 @@ export default {
   */
   extractCSS: true,
   build: {
+    splitChunks: {
+      layouts: true,
+      pages: true,
+      commons: true
+    },
     /*
     ** You can extend webpack config here
     */

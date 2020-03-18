@@ -96,6 +96,10 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import { CardPlugin } from 'bootstrap-vue'
+  Vue.use(CardPlugin)
+
   export default {
     layout: 'ManageLayout',
     middleware: [

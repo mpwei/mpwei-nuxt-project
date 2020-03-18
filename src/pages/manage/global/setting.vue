@@ -22,60 +22,60 @@
           </div>
           <b-tabs active-nav-item-class="font-weight-bold text-dark" content-class="mt-3">
             <b-tab :title="$t('Manage.Global.GlobalSetting')" active>
-              <b-row class="text-secondary">
-                <b-col lg="6" sm="12" class="mb-2">
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+              <div class="row text-secondary">
+                <div class="mb-2 col-lg-6 col-12">
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Title" class="my-1">{{ $t('Manage.Global.WebsiteSwitch') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-checkbox v-model="Config.OnService" switch size="lg" class="mb-1" />
                       <small class="text-secondary">{{ $t('Manage.Global.WebsiteSwitchInfo') }}</small>
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Title" class="my-1">{{ $t('Manage.Global.WebsiteTitle') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Title" v-model="Config.Title[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="SubTitle" class="my-1">{{ $t('Manage.Global.WebsiteSubTitle') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="SubTitle" v-model="Config.Subtitle[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Year" class="my-1">{{ $t('Manage.Global.WebsiteYear') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Year" v-model="Config.Year" class="mb-1" size="sm" :state="null" />
                       <small class="text-secondary">{{ $t('Manage.Global.WebsiteYearInfo') }}</small>
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Description" class="my-1">{{ $t('Manage.Global.Description') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Description" v-model="Config.SEO.Description[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Keyword" class="my-1">{{ $t('Manage.Global.Keyword') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Keyword" v-model="Config.SEO.Keyword[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                </b-col>
-                <b-col lg="6" sm="12" class="mb-2">
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-2 col-lg-6 col-12">
                   <label class="mb-2">{{ $t('Manage.Global.Logo') }}</label>
                   <b-card
                     no-body
@@ -127,8 +127,8 @@
                       </b-input-group>
                     </b-card-body>
                   </b-card>
-                </b-col>
-              </b-row>
+                </div>
+              </div>
             </b-tab>
             <b-tab :title="$t('Manage.Global.Social')">
               <b-input-group v-for="(Data,Index) in Config.Social" :key="Index" size="sm" class="mb-1">
@@ -159,60 +159,60 @@
               </div>
             </b-tab>
             <b-tab :title="$t('Manage.Global.ContactInfo')">
-              <b-row class="text-secondary">
-                <b-col lg="6" sm="12" class="mb-2">
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+              <div class="row text-secondary">
+                <div class="mb-2 col-lg-6 col-12">
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Title" class="my-1">{{ $t('Manage.Global.CompanyName') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Title" v-model="Config.Contact.CompanyName[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Title" class="my-1">{{ $t('Manage.Global.Address') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Title" v-model="Config.Contact.Address[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Title" class="my-1">{{ $t('Manage.Global.Email') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Title" v-model="Config.Contact.Email" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                </b-col>
-                <b-col lg="6" sm="12" class="mb-2">
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-2 col-lg-6 col-12">
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Title" class="my-1">{{ $t('Manage.Global.Phone') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Title" v-model="Config.Contact.Phone[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Title" class="my-1">{{ $t('Manage.Global.Mobile') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Title" v-model="Config.Contact.Mobile[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                  <b-row class="my-2">
-                    <b-col sm="3" class="text-right">
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-sm-3 text-right">
                       <label for="Title" class="my-1">{{ $t('Manage.Global.Fax') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Title" v-model="Config.Contact.Fax[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                </b-col>
-              </b-row>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </b-tab>
           </b-tabs>
         </div>
@@ -228,9 +228,10 @@
 
 <script>
 import Vue from 'vue'
-import { TabsPlugin, InputGroupPlugin } from 'bootstrap-vue'
+import { TabsPlugin, InputGroupPlugin, CardPlugin } from 'bootstrap-vue'
 Vue.use(TabsPlugin)
 Vue.use(InputGroupPlugin)
+Vue.use(CardPlugin)
 
 export default {
   layout: 'ManageLayout',

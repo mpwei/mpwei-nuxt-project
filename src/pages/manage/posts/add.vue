@@ -20,33 +20,33 @@
                 @click="NowLanguage = value">
             </div>
           </div>
-          <b-row class="text-secondary">
-            <b-col lg="6" sm="12" class="mb-2">
-              <b-row class="my-1">
-                <b-col sm="3">
+          <div class="row text-secondary">
+            <div class="mb-2 col-lg-6 col-12">
+              <div class="row my-1">
+                <div class="col-sm-3">
                   <label for="Title" class="my-1">{{ $t('Manage.Post.PostAdd/Title') }}</label>
-                </b-col>
-                <b-col sm="9">
+                </div>
+                <div class="col-sm-9">
                   <b-form-input id="Title" v-model="PostData.Title[NowLanguage]" size="sm" :state="null" />
-                </b-col>
-              </b-row>
-            </b-col>
-            <b-col lg="6" sm="12" class="mb-2">
-              <b-row class="my-1">
-                <b-col sm="3">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 mb-2">
+              <div class="row my-1">
+                <div class="col-sm-3">
                   <label for="Slug" class="my-1">{{ $t('Manage.Post.PostAdd/Slug') }}</label>
-                </b-col>
-                <b-col sm="9">
+                </div>
+                <div class="col-sm-9">
                   <b-form-input id="Slug" v-model="PostData.Slug" size="sm" :state="null" />
-                </b-col>
-              </b-row>
-            </b-col>
-            <b-col lg="6" sm="12" class="mb-2">
-              <b-row class="my-1">
-                <b-col sm="3">
+                </div>
+              </div>
+            </div>
+            <div class="mb-2 col-lg-6 col-12">
+              <div class="row my-1">
+                <div class="col-sm-3">
                   <label for="Tags" class="my-1">{{ $t('Manage.Post.PostAdd/Tags') }}</label>
-                </b-col>
-                <b-col sm="9">
+                </div>
+                <div class="col-sm-9">
                   <b-form-tags
                     v-model="PostData.Tags"
                     input-id="tags-pills"
@@ -57,23 +57,23 @@
                     add-button-variant="danger"
                     :placeholder="$t('Manage.Post.PostAdd/TagPlaceholder')"
                   />
-                </b-col>
-              </b-row>
-            </b-col>
-            <b-col lg="6" sm="12" class="mb-2">
-              <b-row class="my-1">
-                <b-col sm="3">
+                </div>
+              </div>
+            </div>
+            <div class="mb-2 col-lg-6 col-12">
+              <div class="row my-1">
+                <div class="col-sm-3">
                   <label for="Category" class="my-1">{{ $t('Manage.Post.PostAdd/Category') }}</label>
-                </b-col>
-                <b-col sm="9">
+                </div>
+                <div class="col-sm-9">
                   <b-form-select v-model="PostData.Category" size="sm" :options="Categories" />
-                </b-col>
-              </b-row>
-            </b-col>
-          </b-row>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <b-row class="text-secondary">
-          <b-col lg="9" md="8" sm="12" class="mb-2">
+        <div class="row text-secondary">
+          <div class="mb-2 col-lg-9 col-md-8 col-12">
             <div class="my-3 p-3 bg-white rounded shadow-sm fs-form-sm">
               <h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
                 {{ $t('Manage.Post.PostAdd/Content') }}
@@ -88,8 +88,8 @@
                 size="sm"
               />
             </div>
-          </b-col>
-          <b-col lg="3" md="4" sm="12" class="mb-2">
+          </div>
+          <div class="col-lg-3 col-md-4 col-12 mb-2">
             <div class="my-3 p-3 bg-white rounded shadow-sm fs-form-sm">
               <h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
                 {{ $t('Manage.Post.PostAdd/Cover') }}
@@ -143,8 +143,8 @@
                 </b-button>
               </div>
             </div>
-          </b-col>
-        </b-row>
+          </div>
+        </div>
       </form>
     </div>
   </section>

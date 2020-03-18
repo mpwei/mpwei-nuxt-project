@@ -5,8 +5,8 @@
         <div v-if="Loading" class="text-center p-5 position-absolute w-100 h-100 ContentLoading">
           <b-spinner label="Loading..." />
         </div>
-        <b-row class="text-secondary">
-          <b-col lg="9" md="8" sm="12" class="mb-2">
+        <div class="row text-secondary">
+          <div class="mb-2 col-lg-9 col-md-8 col-12">
             <div class="mb-4 p-3 bg-white rounded shadow-sm fs-form-sm">
               <div class="border-bottom pb-3 mb-3 d-flex justify-content-between">
                 <h1 class="font-weight-bold text-dark h4 mb-0">
@@ -22,28 +22,28 @@
                     @click="NowLanguage = value">
                 </div>
               </div>
-              <b-row class="text-secondary">
-                <b-col lg="6" sm="12" class="mb-2">
-                  <b-row class="my-1">
-                    <b-col sm="3">
+              <div class="row text-secondary">
+                <div class="mb-2 col-lg-6 col-12">
+                  <div class="row my-1">
+                    <div class="col-sm-3">
                       <label for="Title" class="my-1">{{ $t('Manage.Post.PostAddCategory/Name') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Title" v-model="CategoryData.Name[NowLanguage]" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                </b-col>
-                <b-col lg="6" sm="12" class="mb-2">
-                  <b-row class="my-1">
-                    <b-col sm="3">
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-2 col-lg-6 col-12">
+                  <div class="row my-1">
+                    <div class="col-sm-3">
                       <label for="Slug" class="my-1">{{ $t('Manage.Post.PostAddCategory/Slug') }}</label>
-                    </b-col>
-                    <b-col sm="9">
+                    </div>
+                    <div class="col-sm-9">
                       <b-form-input id="Slug" v-model="CategoryData.Slug" size="sm" :state="null" />
-                    </b-col>
-                  </b-row>
-                </b-col>
-              </b-row>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="mb-3 p-3 bg-white rounded shadow-sm fs-form-sm">
               <h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
@@ -55,8 +55,8 @@
                 size="sm"
               />
             </div>
-          </b-col>
-          <b-col lg="3" md="4" sm="12" class="mb-2">
+          </div>
+          <div class="col-lg-3 col-md-4 col-12 mb-2">
             <div class="mb-3 p-3 bg-white rounded shadow-sm fs-form-sm">
               <h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
                 {{ $t('Manage.Post.PostAddCategory/State') }}
@@ -91,8 +91,8 @@
                 {{ $t('Manage.Post.PostAdd/Save') }}
               </b-button>
             </div>
-          </b-col>
-        </b-row>
+          </div>
+        </div>
       </form>
     </div>
   </section>
