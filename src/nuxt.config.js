@@ -94,18 +94,25 @@ export default {
   ** Build configuration
   */
   extractCSS: true,
-  build: {
-    splitChunks: {
-      layouts: true,
-      pages: true,
-      commons: true
-    },
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-    }
-  },
+	build: {
+		analyze: true,
+		optimization: {
+			splitChunks: {
+				minSize: 10000,
+				maxSize: 150000
+			}
+		},
+		splitChunks: {
+			layouts: true,
+			pages: true,
+			commons: true
+		},
+		/*
+		** You can extend webpack config here
+		*/
+		extend(config, ctx) {
+		}
+	},
   router: {
     extendRoutes (routes, resolve) {
       routes.push({
