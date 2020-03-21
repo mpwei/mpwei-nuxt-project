@@ -1,4 +1,3 @@
-
 export default {
   mode: 'universal',
   /*
@@ -95,11 +94,10 @@ export default {
   */
   extractCSS: true,
 	build: {
-		analyze: true,
 		optimization: {
 			splitChunks: {
 				minSize: 10000,
-				maxSize: 150000
+				maxSize: 250000
 			}
 		},
 		splitChunks: {
@@ -110,7 +108,7 @@ export default {
 		/*
 		** You can extend webpack config here
 		*/
-		extend(config, ctx) {
+		extend (config, ctx) {
 		}
 	},
   router: {
