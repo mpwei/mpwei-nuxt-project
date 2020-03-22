@@ -11,7 +11,21 @@ export const state = () => ({
       Subtitle: [],
       Menu: [],
       Title: [],
-      Year: 1970
+      Year: 1970,
+      Social: [],
+      SEO: {
+        Description: [],
+        Keyword: []
+      },
+      OnService: true,
+      Contact: {
+        Address: [],
+        CompanyName: [],
+        Fax: [],
+        Mobile: [],
+        Phone: [],
+        Email: ''
+      }
     }
   },
   manage: {

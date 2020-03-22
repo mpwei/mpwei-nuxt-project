@@ -1,27 +1,18 @@
 <template>
   <div class="container">
-    <div>
-      <h2 class="subtitle">
-        {{ $route.name }}
-        {{ $route.path }}
-        {{ $route.params }}
-      </h2>
-    </div>
+    網站維護中
   </div>
 </template>
 
 <script>
-import { Firestore } from '@/plugins/firebase'
-
 export default {
-  layout: 'UserLayout',
   fetch ({ store, params }) {
     // The fetch method is used to fill the store before rendering the page
   },
   asyncData (context) {
     // called every time before loading the component
     return {
-      name: 'MPWEI'
+      name: 'COSMOS'
     }
   },
   data () {

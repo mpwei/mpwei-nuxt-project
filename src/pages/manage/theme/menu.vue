@@ -1,12 +1,12 @@
 <template>
   <section id="ThemeCustomMenu" class="AdminContent">
     <div class="container">
-      <b-form @submit.prevent="SaveMenu">
+      <b-form class="position-relative" @submit.prevent="SaveMenu">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
           <h1 class="font-weight-bold border-bottom pb-3 h4 mb-3">
             {{ $t('Manage.Menu.ThemeCustomMenu') }}
           </h1>
-          <div v-if="Loading" class="text-center p-5">
+          <div v-if="Loading" class="text-center p-5" :class="{ 'position-absolute w-100 h-100 ContentLoading' : (Loading && MenuList.length > 0) }">
             <b-spinner label="Loading..." />
           </div>
           <draggable
@@ -225,4 +225,3 @@
     cursor: pointer;
   }
 </style>
-© 2020 GitHub, Inc.

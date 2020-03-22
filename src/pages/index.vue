@@ -1,54 +1,53 @@
 <template>
   <div class="container">
-    <section v-if="Carousels.length > 0" class="d-none d-md-block my-4">
-      <b-carousel
-        id="IndexCarousel"
-        v-model="CarouselSlide"
-        :interval="6000"
-        @sliding-start="onSlideStart"
-        @sliding-end="onSlideEnd"
-      >
-        <b-carousel-slide v-for="(value, key) in Carousels" :key="key">
-          <div slot="img" class="row no-gutters">
-            <div class="col-lg-8">
-              <img :src="value.Url" :alt="value.Alt" :title="value.Title" :to="value.Link" class="img-fluid">
-            </div>
-            <div class="col-lg-4">
-              <b-card no-body class="h-100 rounded-0">
-                <b-card-body body-tag="article">
-                  <b-card-title title-tag="h3" class="h2 font-weight-bold">
-                    {{ value.Title }}
-                  </b-card-title>
-                  <b-card-text>
-                    {{ value.Content }}
-                  </b-card-text>
-                </b-card-body>
-                <b-card-footer class="bg-white border-0 text-secondary small">
-                  <span>Vue.js</span>
-                  <span>Firebase</span>
-                  <span>2020-01-20</span>
-                </b-card-footer>
-              </b-card>
-            </div>
-          </div>
-        </b-carousel-slide>
-      </b-carousel>
+    <section v-if="Carousels.length > 0" id="IndexCarousel" class="d-none d-md-block mt-4 mb-5">
+      <div v-for="(value, key) in Carousels" :key="key" slot="img" class="row no-gutters mb-3">
+        <div class="col-lg-8">
+          <nuxt-link :to="value.Link">
+            <img :src="value.Url" :alt="value.Alt" :title="value.Title[$store.state.language]" class="img-fluid">
+          </nuxt-link>
+        </div>
+        <div class="col-lg-4">
+          <b-card no-body class="h-100 rounded-0">
+            <b-card-body body-tag="article">
+              <b-card-title title-tag="h3" class="h3 mb-4 font-weight-bold">
+                <nuxt-link tag="a" class="text-dark" :to="value.Link">
+                  {{ value.Title[$store.state.language] }}
+                </nuxt-link>
+              </b-card-title>
+              <b-card-text class="text-secondary text-justify">
+                {{ value.Content[$store.state.language] }}
+              </b-card-text>
+            </b-card-body>
+            <b-card-footer class="bg-white border-0 text-secondary small">
+              <span v-for="(tag, num) in value.Tags" :key="num">{{ tag }}</span>
+            </b-card-footer>
+          </b-card>
+        </div>
+      </div>
     </section>
     <section class="my-4">
+      <h2 class="font-weight-bold mb-4 pb-3 h3 border-bottom">
+        {{ $t('Index.LatestPosts') }}
+      </h2>
       <b-card-group class="ArticleList" deck>
-        <b-card v-for="(value,index) in Posts" :key="index" no-body class="rounded-0" @click="$router.push( { name: 'posts-slug', params: { slug: value.Slug }} )">
-          <b-card-img-lazy class="rounded-0" v-bind="mainProps" :src="value.Cover" :alt="value.Title[$store.state.language]" />
+        <b-card v-for="(value,index) in Posts" :key="index" no-body class="rounded-0">
+          <nuxt-link tag="a" class="text-dark d-block" :to="{ name: 'posts-slug', params: { slug: value.Slug }}">
+            <b-card-img-lazy class="rounded-0" v-bind="mainProps" :src="value.Cover" :alt="value.Title[$store.state.language]" />
+          </nuxt-link>
           <b-card-body body-tag="article">
             <b-card-title title-tag="h3" class="h4 font-weight-bold">
-              {{ value.Title[$store.state.language] }}
+              <nuxt-link tag="a" class="text-dark d-block" :to="{ name: 'posts-slug', params: { slug: value.Slug }}">
+                {{ value.Title[$store.state.language] }}
+              </nuxt-link>
             </b-card-title>
-            <b-card-text>
+            <b-card-text class="text-secondary text-justify">
               {{ value.Excerpt[[$store.state.language]] }}
             </b-card-text>
           </b-card-body>
           <b-card-footer class="bg-white border-0 text-muted small">
             <span v-for="(tag, subindex) in value.Tags" :key="subindex">{{ tag }}</span>
-            <span>{{ $dayjs.unix(value.PostTime.seconds).format("YYYY-MM-DD HH:mm:ss") }}</span>
+            <span>{{ $dayjs.unix(value.PostTime.seconds).format("YYYY-MM-DD") }}</span>
           </b-card-footer>
         </b-card>
         <b-card v-for="number in ComingSoon()" :key="number" no-body class="rounded-0">
@@ -65,9 +64,8 @@
 
 <script>
 import Vue from 'vue'
-import { CarouselPlugin, CardPlugin } from 'bootstrap-vue'
+import { CardPlugin } from 'bootstrap-vue'
 import { Firestore } from '@/plugins/firebase'
-Vue.use(CarouselPlugin)
 Vue.use(CardPlugin)
 
 export default {
@@ -76,14 +74,12 @@ export default {
     // The fetch method is used to fill the store before rendering the page
   },
   async asyncData () {
-    const Carousels = []
+    let Carousels = []
     const Posts = []
-    await Firestore.collection('Carousel').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        Carousels.push(doc.data())
-      })
+    await Firestore.collection('Config').doc('Carousel').get().then((doc) => {
+      Carousels = doc.data().Data
     })
-    await Firestore.collection('Posts').get().then((querySnapshot) => {
+    await Firestore.collection('Posts').where('State', '==', '1').get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         Posts.push(doc.data())
       })
@@ -93,11 +89,14 @@ export default {
       Posts
     }
   },
+  middleware: [
+    'ChenkMaintenance'
+  ],
   data () {
     return {
       Carousels: [],
-      CarouselSlide: 0,
-      CarouselSliding: null,
+      // CarouselSlide: 0,
+      // CarouselSliding: null,
       mainProps: {
         center: true,
         fluidGrow: true,
@@ -124,18 +123,23 @@ export default {
       return Promise.all([
       ])
     },
-    onSlideStart () {
-      this.CarouselSliding = true
-    },
-    onSlideEnd () {
-      this.CarouselSliding = false
-    },
+    // onSlideStart () {
+    //   this.CarouselSliding = true
+    // },
+    // onSlideEnd () {
+    //   this.CarouselSliding = false
+    // },
     ComingSoon (_Column = 3) {
       return parseInt(_Column - this.Posts.length)
     }
   },
   head () {
-    // Set Meta Tags for this Page
+    return {
+      title: this.$store.state.profile.website.Title[this.$store.state.language] + '｜' + this.$store.state.profile.website.Subtitle[this.$store.state.language],
+      meta: [
+        { hid: 'description', name: 'description', content: this.$store.state.profile.website.SEO.Description[this.$store.state.language] }
+      ]
+    }
   }
 }
 </script>

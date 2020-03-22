@@ -1,6 +1,16 @@
 <template>
   <div class="container">
-    {{ PostData }}
+    <section :id="$route.params.slug" class="post my-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <h1 class="font-weight-bold h2">
+            {{ PostData.Title[this.$store.state.language] }}
+          </h1>
+          <hr>
+          <div class="content" v-html="PostData.Content[this.$store.state.language]" />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -12,13 +22,13 @@ export default {
   fetch ({ store, params }) {
   },
   async asyncData (_Context) {
-    const PostData = []
+    let PostData = []
     let Title = _Context.app.head.title
     let Description = ''
     await Firestore.collection('PostDetail').doc('about').get().then((doc) => {
-      PostData.push(doc.data())
-      Title = doc.data().Title[_Context.store.state.language]
-      Description = doc.data().Description[_Context.store.state.language]
+      PostData = doc.data()
+      Title = doc.data().Title
+      Description = doc.data().Description
     })
     return {
       PostData,
@@ -26,6 +36,9 @@ export default {
       Description
     }
   },
+  middleware: [
+    'ChenkMaintenance'
+  ],
   data () {
     return {
       PostData: [],
@@ -39,9 +52,9 @@ export default {
   },
   head () {
     return {
-      title: this.Title,
+      title: this.Title[this.$store.state.language] + ' - ' + this.$store.state.profile.website.Title[this.$store.state.language] + '｜' + this.$store.state.profile.website.Subtitle[this.$store.state.language],
       meta: [
-        { hid: 'description', name: 'description', content: this.Description }
+        { hid: 'description', name: 'description', content: this.Description[this.$store.state.language] }
       ]
     }
   }

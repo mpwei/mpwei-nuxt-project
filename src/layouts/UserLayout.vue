@@ -6,12 +6,12 @@
           <b-navbar-brand to="/" class="site-logo mr-auto">
             <img :src="$store.state.profile.website.Logo.Url" alt="More Patient">
             <h1 class="d-inline ml-2">
-              More Patient.
+              {{ $store.state.profile.website.Title[$store.state.language] }}
             </h1>
           </b-navbar-brand>
         </div>
       </b-navbar>
-      <b-navbar toggleable="md" type="dark" variant="dark">
+      <b-navbar toggleable="md" type="dark" variant="dark" class="shadow-sm">
         <div class="container">
           <b-navbar-toggle target="nav-collapse" />
           <b-collapse id="nav-collapse" is-nav>
@@ -28,13 +28,13 @@
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto d-none d-md-flex">
               <b-nav-item
-                v-for="(value,index) in Social"
+                v-for="(value,index) in $store.state.profile.website.Social"
                 :key="index"
                 right
-                :href="value.link"
+                :href="value.Link"
                 target="_blank"
               >
-                <i class="fa" :class="'fa-' + value.icon" />
+                <i class="fa" :class="'fa-' + Social[value.Name].icon" />
               </b-nav-item>
               <b-nav-item-dropdown class="rounded-0" text="Lang" right>
                 <template slot="button-content">
@@ -51,7 +51,9 @@
     </header>
     <nuxt />
     <footer id="footer" class="text-secondary py-3 text-center border-top">
-      Copyright © {{ $store.state.profile.website.Year }} {{ $store.state.profile.website.Title[$store.state.language] }} All rights reserved. Designed by MPWEI
+      <div class="container">
+        Copyright © {{ $store.state.profile.website.Year }} {{ $store.state.profile.website.Title[$store.state.language] }} All rights reserved. Designed by MPWEI
+      </div>
     </footer>
   </div>
 </template>
@@ -61,10 +63,6 @@ export default {
   data () {
     return {
       Social: {
-        mail: {
-          icon: 'envelope',
-          link: 'mailto:mailermpwei@gmail.com'
-        },
         github: {
           icon: 'github',
           link: '//github.com/mpwei'

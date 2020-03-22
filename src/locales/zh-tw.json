@@ -8,6 +8,10 @@
     "en-us": "English",
     "zh-tw": "繁體中文"
   },
+  "Index": {
+    "LatestPosts": "近期文章",
+    "LatestProject": "近期專案"
+  },
   "Manage": {
     "ManageLogin": "登入",
     "Account": "帳號",

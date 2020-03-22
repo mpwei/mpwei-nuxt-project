@@ -180,7 +180,7 @@
           Category: null,
           Content: {},
           Cover: '',
-          State: 1,
+          State: '1',
           Description: {},
           Keyword: {},
           Excerpt: {}

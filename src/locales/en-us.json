@@ -8,6 +8,10 @@
     "en-us": "English",
     "zh-tw": "繁體中文"
   },
+  "Index": {
+    "LatestPosts": "Recent Posts",
+    "LatestProject": "Recent Project"
+  },
   "Manage": {
     "ManageLogin": "Login",
     "Account": "Account",
