@@ -1,19 +1,48 @@
 {
   "Global": {
+    "Index": "Home",
     "Confirm": "OK",
     "Cancel": "Cancel",
-    "Save": "Save"
+    "Save": "Save",
+    "LearnMore": "Learn More",
+    "Choose": "Choose",
+    "Upload": "Upload",
+    "Browse": "Browse",
+    "Contact": "Contact",
+    "Back": "Back",
+    "Submit": "Submit",
+    "NoMore": "No more article"
+  },
+  "Account": {
+    "Login": "Login",
+    "Logout": "Logout",
+    "Register": "Vendor Register",
+    "Forget": "Forget Password?",
+    "Profile": "",
+    "ChangePassword": "",
+    "": ""
+  },
+  "Footer": {
+    "DirectedBy": "Directed By",
+    "Organizer": "Organizer",
+    "Executive": "Executive"
   },
   "Language": {
     "en-us": "English",
     "zh-tw": "繁體中文"
   },
   "Index": {
-    "LatestPosts": "Recent Posts",
-    "LatestProject": "Recent Project"
+    "Remain": "Remain",
+    "Day": "Day",
+    "Hour": "Hours",
+    "Min": "Minutes",
+    "Sec": "Seconds",
+    "LatestNews": "News",
+    "ApplyDate": "報名日期",
+    "LatestPosts": "Recent Posts"
   },
   "Manage": {
-    "ManageLogin": "Login",
+    "ManageLogin": "Admin Login",
     "Account": "Account",
     "Password": "Password",
     "Remember": "Remember me",
@@ -24,6 +53,10 @@
       "Theme": "Theme",
       "ThemeCarousel": "Carousel",
       "ThemeCustomMenu": "Custom Menu",
+      "Unit": "Unit",
+      "About": "About",
+      "Workflow": "Workflow",
+      "Issue": "Download Zone",
       "Order": "Order",
       "Product": "Product",
       "ProductList": "Product List",
@@ -50,6 +83,11 @@
       "MessageCenter": "Message Center",
       "Customer": "Customer",
       "System": "System"
+    },
+    "DashBoard": {
+      "ServiceStatus": "Status",
+      "OnService": "Running",
+      "OffService": "Stop"
     },
     "Post": {
       "State": {
@@ -103,6 +141,8 @@
         "1": "Show"
       },
       "CustomMenu/AddMenu": "Add Menu",
+      "CustomMenu/AddSubMenu": "Add SubMenu",
+      "CustomMenu/SubMenu": "SubMenu",
       "CustomMenu/Save": "Save",
       "CustomMenu/Name": "Menu Name",
       "CustomMenu/LinkOption": "Link Type Option",
@@ -112,7 +152,21 @@
       "CustomMenu/LinkOptionProduct": "Product",
       "CustomMenu/LinkOptionPostCategory": "Post Category",
       "CustomMenu/LinkOptionProductCategory": "Product Category",
-      "CustomMenu/LinkOptionCustom": "Custom Link"
+      "CustomMenu/LinkOptionCustom": "Custom Link",
+      "Carousel/Add": "Add Carousel",
+      "Carousel/Save": "Save",
+      "Carousel/Edit": "Edit Carousel",
+      "Carousel/Notice": "Press to drag images to sort",
+      "Carousel/OK": "OK",
+      "Carousel/Cancel": "Cancel",
+      "Carousel/Alt": "Alt",
+      "Carousel/Title": "Title",
+      "Carousel/Content": "Content",
+      "Carousel/Link": "Link",
+      "Carousel/Type": "Type",
+      "Carousel/Tags": "Tags",
+      "Carousel/Url": "Url",
+      "Carousel/OpenMediaStore": "MediaStore"
     },
     "Global": {
       "GlobalSetting": "Global Setting",
@@ -138,7 +192,31 @@
       "Mobile": "Mobile",
       "Fax": "Fax",
       "Email": "Email",
-      "Save": "Save"
+      "Save": "Save",
+      "AddSocialLink": "Add Social Link",
+      "NoMessage": "No Message Alert"
+    },
+    "Unit": {
+      "MetaData": "Meta Data",
+      "Download": "Download",
+      "Delete": "Delete",
+      "FileName": "FileName",
+      "FileSize": "FileSize",
+      "FileType": "FileType",
+      "FileNewTime": "NewTime",
+      "FileUpdate": "Update",
+      "AddWorkflow": "Add Workflow",
+      "Title": "Title",
+      "Date": "Date",
+      "Location": "Location",
+      "TitlePlaceholder": "Please Enter Title",
+      "Content": "Content",
+      "ContentPlaceholder": "Please Enter Content"
+    },
+    "Media": {
+      "FileMeta": "File MetaData",
+      "Upload": "Media Upload",
+      "DoUpload": "Upload"
     },
     "Alert": "Alert",
     "MediaStore": "Media",
@@ -157,12 +235,16 @@
     "Info": "Info",
     "AskDelete": "Confirm Delete?",
     "Manage": {
+      "global/save-success": "Success to save",
+      "global/save-fail": "Fail to save!",
+      "global/get-data-fail": "Fail to get list",
       "auth/invalid-email": "Account is invalid",
       "auth/user-disabled": "Account is disabled.",
       "auth/user-not-found": "Not found this account.",
       "auth/wrong-password": "Wrong password, please enter password again.",
       "auth/expired": "Certificate is expired, please login again.",
       "auth/unexpected-error": "Unexpected error, please try again later.",
+      "auth/operation-not-allowed": "Operation is not allowed!",
       "logout/success-logout": "You are success to logout!",
       "firestore/notfound": "Data is not found.",
       "post/nodata": "No data in this result",
@@ -181,7 +263,12 @@
       "theme/get-list-fail": "Fail to get list",
       "theme/save-success": "Theme settings success to save",
       "theme/save-fail": "Theme settings fail to save!",
-      "theme/delete-confirm": "Would you remove this item?"
+      "theme/delete-confirm": "Would you remove this item?",
+      "media/no-filename": "Please select a file!",
+      "unit/upload-success": "Upload success!",
+      "unit/delete-success": "Finish to delete file",
+      "unit/delete-fail": "An error occur: delete file failed!",
+      "global/no-items": "Current items not found"
     }
   }
 }

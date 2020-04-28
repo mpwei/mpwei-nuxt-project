@@ -28,7 +28,7 @@
             <b-button size="sm" class="mr-2" @click="$router.push({ name: 'PostEdit', params: { slug: row.item.Slug }})">
               <i class="fa fa-edit" />
             </b-button>
-            <b-button variant="danger" size="sm" @click="RemovePost(row.item.Slug)">
+            <b-button variant="danger" size="sm" @click="RemovePost(row.item.Slug, row.index)">
               <i class="fa fa-remove" />
             </b-button>
           </template>
@@ -87,10 +87,9 @@
       },
       GetPostList () {
         this.List = []
-        return this.$Firebase('firestore').collection('Posts').orderBy('PostTime', 'desc').get().then((_Response) => {
-          _Response.forEach((doc) => {
+        return this.$Firebase('firestore').collection('Posts').orderBy('PostTime', 'desc').get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
             this.List.push({
-              ID: doc.id,
               Title: doc.data().Title,
               Slug: doc.data().Slug,
               PostTime: this.$dayjs.unix(doc.data().PostTime.seconds).format('YYYY-MM-DD HH:mm:ss'),
@@ -105,7 +104,7 @@
           })
         })
       },
-      RemovePost (_Slug) {
+      RemovePost (_Slug, _Index) {
         this.$Swal.fire({
           icon: 'warning',
           title: this.$t('Message.AskDelete'),
@@ -130,9 +129,8 @@
                 icon: 'success',
                 title: this.$t('Message.Success'),
                 text: this.$t('Message.Manage.post/delete-success')
-              }).then(() => {
-                this.Init()
               })
+              this.List.splice(_Index, 1)
             }).catch((_Error) => {
               this.$Swal.fire({
                 icon: 'error',

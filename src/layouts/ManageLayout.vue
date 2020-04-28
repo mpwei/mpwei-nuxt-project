@@ -3,7 +3,7 @@
     <header id="AdminHeader">
       <b-navbar id="MainNav" toggleable="lg" type="dark" variant="dark">
         <b-navbar-brand href="#" class="site-logo">
-          <img :src="$store.state.profile.website.LogoAlt.Url" alt="More Patient">
+          <img :src="$store.state.profile.website.LogoAlt.Url" :alt="$store.state.profile.website.Title[$store.state.language]">
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse" />
         <b-collapse id="nav-collapse" is-nav>
@@ -15,10 +15,17 @@
             </template>
           </b-navbar-nav>
           <b-navbar-nav class="MainRight ml-auto">
-            <b-nav-item v-b-tooltip.hover href="#" right :title="$t('Manage.Alert')">
-              <i class="fa fa-bell" />
-            </b-nav-item>
-            <b-nav-item v-b-tooltip.hover href="#" right :title="$t('Manage.MediaStore')">
+            <b-nav-item-dropdown v-b-tooltip.hover text="Lang" right :title="$t('Manage.Alert')">
+              <template slot="button-content">
+                <i class="fa fa-bell" />
+              </template>
+              <template slot="default">
+                <div class="py-1 px-3 text-center">
+                  {{ $t('Manage.Global.NoMessage') }}
+                </div>
+              </template>
+            </b-nav-item-dropdown>
+            <b-nav-item v-b-tooltip.hover to="/manage/global/media" right :title="$t('Manage.MediaStore')">
               <i class="fa fa-image" />
             </b-nav-item>
             <b-nav-item v-b-tooltip.hover to="/manage/global/setting" right :title="$t('Manage.SystemConfig')">
@@ -112,6 +119,19 @@
               ThemeCustomMenu: {
                 Open: true,
                 Path: '/manage/theme/menu'
+              }
+            }
+          },
+          Unit: {
+            Open: 'true',
+            Sub: {
+              About: {
+                Open: true,
+                Path: '/manage/unit/about'
+              },
+              Issue: {
+                Open: true,
+                Path: '/manage/unit/download'
               }
             }
           },

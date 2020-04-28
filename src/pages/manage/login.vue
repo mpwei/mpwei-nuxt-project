@@ -91,21 +91,35 @@ export default {
     },
     DoLogin () {
       this.$nuxt.$loading.start()
-      this.$Firebase('auth').signInWithEmailAndPassword(this.Account, this.Password).then((_Response) => {
-        this.WriteLoginRecord(_Response).then(() => {
+      this.$Firebase('firestore').collection('Member').where('Account', '==', this.Account).where('Identity', '==', 'Master').get().then((_Document) => {
+        if (_Document.empty) {
           this.$nuxt.$loading.finish()
-          this.$router.push('/manage/dashboard')
-        }).catch((_Error) => {
-          this.$nuxt.$loading.finish()
-          this.Error = _Error.Error
-          this.Variant = _Error.Variant
-          this.ErrorMessage = _Error.ErrorMessage
-        })
+          this.Error = true
+          this.Variant = 'danger'
+          this.ErrorMessage = this.$t('Message.Manage.auth/user-not-found')
+        } else {
+          this.$Firebase('auth').signInWithEmailAndPassword(this.Account, this.Password).then((_Response) => {
+            this.WriteRecord(_Response).then(() => {
+              this.$nuxt.$loading.finish()
+              this.$router.push('/manage/dashboard')
+            }).catch((_Error) => {
+              this.$nuxt.$loading.finish()
+              this.Error = _Error.Error
+              this.Variant = _Error.Variant
+              this.ErrorMessage = _Error.ErrorMessage
+            })
+          }).catch((_Error) => {
+            this.$nuxt.$loading.finish()
+            this.Error = true
+            this.Variant = 'danger'
+            this.ErrorMessage = this.$t('Message.Manage.' + _Error.code)
+          })
+        }
       }).catch((_Error) => {
         this.$nuxt.$loading.finish()
         this.Error = true
         this.Variant = 'danger'
-        this.ErrorMessage = this.$t('Message.Manage.' + _Error.code)
+        this.ErrorMessage = this.$t('Message.Manage.auth/unexpected-error') + ': ' + _Error
       })
     },
     CheckAuth () {
@@ -119,16 +133,17 @@ export default {
         }
       })
     },
-    WriteLoginRecord (_Response) {
+    WriteRecord (_Response, _Operation = 'Login') {
       return this.$Firebase('firestore').collection('LoginRecord').add({
         Account: this.Account,
         Uid: _Response.user.uid,
-        LoginTime: _Response.user.metadata.b
+        Operation: _Operation,
+        Time: _Response.user.metadata.b
       }).catch((_Error) => {
         _Error({
           Error: true,
           Variant: 'danger',
-          ErrorMessage: this.$t('Message.Manage.auth/unexpected-error')
+          ErrorMessage: this.$t('Message.Manage.auth/unexpected-error') + ': ' + _Error
         })
       })
     }

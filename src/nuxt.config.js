@@ -39,6 +39,7 @@ export default {
   plugins: [
     { src: '~/plugins/firebase' },
     { src: '~/plugins/SweetAlert2', mode: 'client' },
+    { src: '~/plugins/InfiniteScroll', mode: 'client' },
     { src: '~/plugins/language' }
   ],
   /*
@@ -67,10 +68,10 @@ export default {
   */
   modules: [
     'bootstrap-vue/nuxt',
-    // '@nuxtjs/axios',
+    '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@ax2/dayjs-module'
-    // '@nuxtjs/dotenv'
+    '@ax2/dayjs-module',
+    '@nuxtjs/dotenv'
   ],
   bootstrapVue: {
     components: [

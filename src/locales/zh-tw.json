@@ -1,19 +1,48 @@
 {
   "Global": {
+    "Index": "首頁",
     "Confirm": "確定",
     "Cancel": "取消",
-    "Save": "儲存設定"
+    "Save": "儲存設定",
+    "LearnMore": "了解更多",
+    "Choose": "請選擇",
+    "Upload": "上傳",
+    "Browse": "瀏覽",
+    "Contact": "聯絡我們",
+    "Back": "回前頁",
+    "Submit": "送出",
+    "NoMore": "沒有更多文章了。"
+  },
+  "Account": {
+    "Login": "廠商登入",
+    "Register": "廠商註冊",
+    "Logout": "登出",
+    "Forget": "忘記密碼",
+    "Profile": "個人資訊",
+    "ChangePassword": "更新密碼",
+    "": ""
+  },
+  "Footer": {
+    "DirectedBy": "指導單位",
+    "Organizer": "主辦單位",
+    "Executive": "執行單位"
   },
   "Language": {
     "en-us": "English",
     "zh-tw": "繁體中文"
   },
   "Index": {
-    "LatestPosts": "近期文章",
-    "LatestProject": "近期專案"
+    "Remain": "剩餘",
+    "Day": "天",
+    "Hour": "時",
+    "Min": "分",
+    "Sec": "秒",
+    "LatestNews": "最新消息",
+    "ApplyDate": "報名日期",
+    "LatestPosts": "近期文章"
   },
   "Manage": {
-    "ManageLogin": "登入",
+    "ManageLogin": "管理員登入",
     "Account": "帳號",
     "Password": "密碼",
     "Remember": "記住我",
@@ -24,6 +53,10 @@
       "Theme": "版面設定",
       "ThemeCarousel": "輪播設定",
       "ThemeCustomMenu": "選單設定",
+      "Unit": "單元設定",
+      "About": "關於我們",
+      "Workflow": "流程說明",
+      "Issue": "下載專區",
       "Order": "訂單管理",
       "Product": "商品管理",
       "ProductList": "商品列表",
@@ -50,6 +83,11 @@
       "MessageCenter": "訊息中心",
       "Customer": "顧客訊息",
       "System": "系統訊息"
+    },
+    "DashBoard": {
+      "ServiceStatus": "網站狀態",
+      "OnService": "正常運作中",
+      "OffService": "網站維護中"
     },
     "Post": {
       "State": {
@@ -102,7 +140,9 @@
         "0": "隱藏",
         "1": "顯示"
       },
-      "CustomMenu/AddMenu": "新增一選單",
+      "CustomMenu/AddMenu": "新增選單",
+      "CustomMenu/AddSubMenu": "新增子選單",
+      "CustomMenu/SubMenu": "子選單",
       "CustomMenu/Save": "儲存選單",
       "CustomMenu/Name": "選單名稱",
       "CustomMenu/LinkOption": "連結類型",
@@ -112,7 +152,21 @@
       "CustomMenu/LinkOptionProduct": "商品",
       "CustomMenu/LinkOptionPostCategory": "文章分類",
       "CustomMenu/LinkOptionProductCategory": "商品分類",
-      "CustomMenu/LinkOptionCustom": "自訂連結"
+      "CustomMenu/LinkOptionCustom": "自訂連結",
+      "Carousel/Add": "新增輪播圖",
+      "Carousel/Save": "儲存輪播圖",
+      "Carousel/Edit": "修改輪播圖",
+      "Carousel/Notice": "拖曳以變更排序。",
+      "Carousel/OK": "確認",
+      "Carousel/Cancel": "取消",
+      "Carousel/Alt": "替代字(Alt)",
+      "Carousel/Title": "標題",
+      "Carousel/Content": "內容",
+      "Carousel/Link": "連結",
+      "Carousel/Type": "輪播類型",
+      "Carousel/Tags": "標籤",
+      "Carousel/Url": "圖片位置",
+      "Carousel/OpenMediaStore": "開啟媒體櫃"
     },
     "Global": {
       "GlobalSetting": "全域設定",
@@ -138,7 +192,31 @@
       "Mobile": "行動電話",
       "Fax": "傳真",
       "Email": "電子信箱",
-      "Save": "儲存設定"
+      "Save": "儲存設定",
+      "AddSocialLink": "新增社群連結",
+      "NoMessage": "目前無任何通知"
+    },
+    "Unit": {
+      "MetaData": "檔案資訊",
+      "Download": "下載檔案",
+      "Delete": "刪除檔案",
+      "FileName": "檔案名稱",
+      "FileSize": "檔案大小",
+      "FileType": "檔案類型",
+      "FileNewTime": "新增時間",
+      "FileUpdate": "更新時間",
+      "AddWorkflow": "新增流程",
+      "Title": "標題",
+      "Date": "日期",
+      "Location": "位置",
+      "TitlePlaceholder": "請輸入標題",
+      "Content": "內容",
+      "ContentPlaceholder": "請輸入內容"
+    },
+    "Media": {
+      "FileMeta": "圖片資訊",
+      "Upload": "圖片上傳",
+      "DoUpload": "上傳圖片"
     },
     "Alert": "通知",
     "MediaStore": "媒體櫃",
@@ -166,6 +244,7 @@
       "auth/wrong-password": "密碼錯誤，請重新輸入！",
       "auth/expired": "憑證已逾時，請重新登入",
       "auth/unexpected-error": "發生短暫錯誤，請稍後再試。",
+      "auth/operation-not-allowed": "操作不允許！",
       "logout/success-logout": "您已成功登出",
       "firestore/notfound": "找不到資料！。",
       "post/nodata": "目前無任何文章",
@@ -185,7 +264,12 @@
       "theme/get-list-fail": "列表取得失敗",
       "theme/save-success": "版面設定儲存成功",
       "theme/save-fail": "版面設定儲存失敗！",
-      "theme/delete-confirm": "是否要刪除此項目？"
+      "theme/delete-confirm": "是否要刪除此項目？",
+      "media/no-filename": "請選擇檔案！",
+      "unit/upload-success": "上傳成功！",
+      "unit/delete-success": "檔案刪除成功",
+      "unit/delete-fail": "檔案刪除失敗！",
+      "global/no-items": "目前無任何項目"
     }
   }
 }

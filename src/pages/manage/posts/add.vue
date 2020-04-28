@@ -78,7 +78,7 @@
               <h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
                 {{ $t('Manage.Post.PostAdd/Content') }}
               </h6>
-              <VueEditor v-model="PostData.Content[NowLanguage]" class="mb-4" />
+              <VueEditor v-model="PostData.Content[NowLanguage]" class="mb-4" :editor-toolbar="CustomToolbar" />
               <h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
                 {{ $t('Manage.Post.PostAdd/Excerpt') }}
               </h6>
@@ -189,7 +189,26 @@
         Categories: [
           { value: null, text: this.$t('Manage.Post.PostAdd/CategoryPlaceholder'), disabled: true }
         ],
-        File: null
+        File: null,
+        CustomToolbar: [
+          [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          [{ font: [] }],
+
+          ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+          ['blockquote', 'code-block'],
+
+          [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
+          [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+          [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+          [{ direction: 'rtl' }], // text direction
+
+          [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+          [{ align: [] }],
+          ['link', 'image', 'video', 'formula'],
+
+          ['clean'] // remove formatting button
+        ]
       }
     },
     mounted () {

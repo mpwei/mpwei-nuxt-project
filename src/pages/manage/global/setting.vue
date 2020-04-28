@@ -140,7 +140,7 @@
                   <b-dropdown size="sm" variant="dark" class="text-capitalize">
                     <template v-slot:button-content>
                       <span class="text-capitalize">
-                        {{ (Data.Name === '' ? '請選擇' : Data.Name) }}
+                        {{ (Data.Name === '' ? $t('Global.Choose') : Data.Name) }}
                       </span>
                     </template>
                     <b-dropdown-item v-for="Value in AllowSocial" :key="Value" @click="Data.Name = Value">
@@ -154,7 +154,7 @@
               </b-input-group>
               <div class="text-right">
                 <b-button size="sm" variant="danger" type="button" class="mt-3" @click="AddSocial">
-                  <i class="fa fa-plus" /> 新增社群連結
+                  <i class="fa fa-plus" /> {{ $t('Manage.Global.AddSocialLink') }}
                 </b-button>
               </div>
             </b-tab>

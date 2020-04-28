@@ -1,13 +1,13 @@
 <template>
   <section id="DashBoard" class="AdminContent">
     <div class="container">
-      <div class="d-flex align-items-center p-3 my-3 bg-success text-white rounded shadow-sm">
-        <img class="mr-3" :src="$store.state.profile.website.LogoAlt.Url" alt="" width="48" height="48">
+      <div class="d-flex align-items-center p-3 my-3 rounded shadow-sm" :class="{'bg-success text-white': $store.state.profile.website.OnService === true, 'bg-warning text-dark': $store.state.profile.website.OnService === false}">
+        <img class="mr-3" :src="$store.state.profile.website.LogoAlt.Url" alt="" height="48">
         <div class="lh-100">
-          <h5 class="mb-0 lh-100">
+          <h5 class="font-weight-bold mb-0 lh-100">
             {{ $store.state.profile.website.Title[$store.state.language] }}
           </h5>
-          <small>網站狀態: 正常運作中</small>
+          <small>{{ $t('Manage.DashBoard.ServiceStatus') }}: {{ $t('Manage.DashBoard.' + ($store.state.profile.website.OnService ? 'OnService' : 'OffService') ) }}</small>
         </div>
       </div>
     </div>
@@ -15,26 +15,19 @@
 </template>
 
 <script>
-import { Firestore } from '@/plugins/firebase'
-
 export default {
   layout: 'ManageLayout',
   middleware: [
     'ManageAuth'
   ],
-  fetch ({ store, params }) {
-    // The fetch method is used to fill the store before rendering the page
+  async fetch ({ store, params }) {
+    await store.dispatch('GetWebConfig', store)
   },
   asyncData (context) {
     // called every time before loading the component
-    return {
-      name: 'COSMOS'
-    }
   },
   data () {
     return {
-      name: '123',
-      text: ''
     }
   },
   mounted () {
